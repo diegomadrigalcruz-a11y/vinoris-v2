@@ -4,567 +4,387 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Sommelier Personal | Vinoris</title>
-  <meta name="description" content="Tu sommelier personal. Descubrí los mejores vinos, quesos, carnes y pastas para cada ocasión."/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
-    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-    :root {
-      --black: #0a0a0a;
-      --surface: #141414;
-      --gold: #BF9B30;
-      --gold-dim: rgba(191,155,48,.15);
-      --cream: #f0ebe0;
-      --muted: rgba(240,235,224,.5);
-      --line: rgba(191,155,48,.14);
-      --burgundy: #7B2D50;
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+    :root{
+      --black:#0a0a0a;--gold:#BF9B30;--gold-dim:rgba(191,155,48,.13);
+      --cream:#f0ebe0;--muted:rgba(240,235,224,.48);--line:rgba(191,155,48,.13);
     }
-    html { scroll-behavior: smooth; }
-    body { background: var(--black); color: var(--cream); font-family: 'Inter', sans-serif; font-weight: 300; -webkit-font-smoothing: antialiased; min-height: 100vh; }
+    html{scroll-behavior:smooth;}
+    body{background:var(--black);color:var(--cream);font-family:'Inter',sans-serif;font-weight:300;-webkit-font-smoothing:antialiased;min-height:100vh;}
+    a{color:var(--gold);text-decoration:none;}
 
     /* NAV */
-    .s-nav {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 20px 52px;
-      border-bottom: 1px solid var(--line);
-      background: rgba(10,10,10,.97); backdrop-filter: blur(14px);
-      position: sticky; top: 0; z-index: 100;
-    }
-    .s-brand { font-family: 'Cormorant Garamond', serif; font-size: 1.3rem; color: var(--cream); text-decoration: none; }
-    .s-brand sup { font-size: .52em; color: var(--gold); }
-    .s-back { font-size: .68rem; letter-spacing: .18em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .2s; }
-    .s-back:hover { color: var(--cream); }
+    nav{display:flex;align-items:center;justify-content:space-between;padding:20px 52px;border-bottom:1px solid var(--line);background:rgba(10,10,10,.97);backdrop-filter:blur(14px);position:sticky;top:0;z-index:100;}
+    .brand{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);}
+    .brand sup{font-size:.5em;color:var(--gold);}
+    .back{font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);transition:color .2s;}
+    .back:hover{color:var(--cream);}
 
     /* HERO */
-    .s-hero { text-align: center; padding: 72px 40px 56px; border-bottom: 1px solid var(--line); }
-    .s-eyebrow { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; }
-    .s-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.2rem, 5vw, 3.4rem); font-weight: 400; color: var(--cream); line-height: 1.1; margin-bottom: 16px; }
-    .s-sub { color: var(--muted); font-size: .88rem; max-width: 460px; margin: 0 auto; line-height: 1.7; }
+    .hero{text-align:center;padding:60px 40px 48px;}
+    .eyebrow{font-size:.62rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:400;color:var(--cream);line-height:1.1;margin-bottom:14px;}
+    .hero-sub{color:var(--muted);font-size:.85rem;max-width:400px;margin:0 auto;line-height:1.7;}
 
-    /* STEP INDICATOR */
-    .s-steps { display: flex; align-items: center; justify-content: center; gap: 0; padding: 36px 40px; }
-    .s-step-num {
-      width: 32px; height: 32px; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: .65rem; letter-spacing: .1em;
-      border: 1px solid var(--line); color: var(--muted);
-      transition: all .3s;
-    }
-    .s-step-num.active { border-color: var(--gold); color: var(--gold); background: var(--gold-dim); }
-    .s-step-num.done { border-color: var(--gold); background: var(--gold); color: var(--black); }
-    .s-step-line { width: 60px; height: 1px; background: var(--line); margin: 0 12px; }
-    .s-step-label { font-size: .6rem; letter-spacing: .14em; text-transform: uppercase; margin-top: 6px; color: var(--muted); }
-    .s-step-wrap { display: flex; flex-direction: column; align-items: center; }
+    /* DIVIDER */
+    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--gold-dim) 25%,var(--gold-dim) 75%,transparent);margin:0 52px;}
 
-    /* STEP CONTENT */
-    .s-panel {
-      max-width: 900px; margin: 0 auto; padding: 48px 40px 64px;
-      display: none;
-    }
-    .s-panel.active { display: block; }
-    .s-q { font-family: 'Cormorant Garamond', serif; font-size: 1.7rem; font-weight: 400; color: var(--cream); text-align: center; margin-bottom: 40px; }
+    /* QUESTION BLOCK */
+    .q-block{max-width:980px;margin:0 auto;padding:52px 40px 40px;}
+    .q-label{font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;display:flex;align-items:center;gap:12px;}
+    .q-label::after{content:'';flex:1;height:1px;background:var(--line);}
+    .q-text{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-weight:400;color:var(--cream);margin-bottom:28px;}
 
-    /* OPTION CARDS */
-    .s-options { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
-    .s-opt {
-      border: 1px solid var(--line);
-      padding: 28px 18px 22px;
-      text-align: center;
-      cursor: pointer;
-      transition: all .25s;
-      position: relative;
-      overflow: hidden;
+    /* OPTION GRID */
+    .opts{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+    .opt{
+      border:1px solid var(--line);overflow:hidden;cursor:pointer;
+      position:relative;transition:border-color .3s;
     }
-    .s-opt:hover { border-color: rgba(191,155,48,.4); background: rgba(191,155,48,.04); }
-    .s-opt.selected { border-color: var(--gold); background: var(--gold-dim); }
-    .s-opt.selected::after {
-      content: '✓';
-      position: absolute; top: 10px; right: 12px;
-      color: var(--gold); font-size: .75rem;
+    .opt:hover{border-color:rgba(191,155,48,.4);}
+    .opt.selected{border-color:var(--gold);}
+    .opt.selected::after{
+      content:'';position:absolute;inset:0;
+      background:rgba(191,155,48,.08);pointer-events:none;
     }
-    .s-opt-icon { font-size: 2rem; margin-bottom: 12px; display: block; }
-    .s-opt-img {
-      width: 100%; height: 110px; object-fit: cover;
-      margin-bottom: 14px; filter: brightness(.85);
-      transition: filter .25s;
+    .opt.selected .opt-check{opacity:1;}
+    .opt-check{
+      position:absolute;top:10px;right:10px;
+      width:20px;height:20px;border-radius:50%;
+      background:var(--gold);display:flex;align-items:center;justify-content:center;
+      font-size:.6rem;color:var(--black);font-weight:700;
+      opacity:0;transition:opacity .25s;z-index:2;
     }
-    .s-opt:hover .s-opt-img, .s-opt.selected .s-opt-img { filter: brightness(1); }
-    .s-opt-label { font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; color: var(--cream); margin-bottom: 4px; }
-    .s-opt-desc { font-size: .72rem; color: var(--muted); line-height: 1.5; }
+    .opt-img{width:100%;height:140px;object-fit:cover;display:block;filter:brightness(.78);transition:filter .3s;}
+    .opt:hover .opt-img,.opt.selected .opt-img{filter:brightness(.95);}
+    .opt-body{padding:14px 14px 16px;}
+    .opt-name{font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;color:var(--cream);margin-bottom:4px;}
+    .opt-desc{font-size:.7rem;color:var(--muted);line-height:1.5;}
 
-    /* NEXT BUTTON */
-    .s-actions { display: flex; justify-content: center; gap: 16px; margin-top: 40px; }
-    .s-btn {
-      border: 1px solid var(--gold); color: var(--gold); background: transparent;
-      padding: 12px 44px; font-size: .68rem; letter-spacing: .22em; text-transform: uppercase;
-      cursor: pointer; font-family: 'Inter', sans-serif;
-      transition: all .25s;
+    /* PALATE (no images — typographic cards) */
+    .opts-pal{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;}
+    .opt-pal{
+      border:1px solid var(--line);padding:28px 18px 24px;
+      text-align:center;cursor:pointer;position:relative;
+      transition:border-color .3s,background .3s;
     }
-    .s-btn:hover { background: var(--gold); color: var(--black); }
-    .s-btn-ghost { border-color: var(--line); color: var(--muted); }
-    .s-btn-ghost:hover { border-color: var(--muted); color: var(--cream); background: transparent; }
-    .s-btn:disabled { opacity: .35; cursor: not-allowed; }
-    .s-btn:disabled:hover { background: transparent; color: var(--gold); }
+    .opt-pal:hover{border-color:rgba(191,155,48,.4);background:rgba(191,155,48,.03);}
+    .opt-pal.selected{border-color:var(--gold);background:var(--gold-dim);}
+    .opt-pal.selected .opt-check{opacity:1;}
+    .opt-pal-accent{width:28px;height:2px;background:var(--gold);margin:0 auto 16px;opacity:.5;transition:opacity .3s;}
+    .opt-pal.selected .opt-pal-accent,.opt-pal:hover .opt-pal-accent{opacity:1;}
+    .opt-pal-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream);margin-bottom:6px;}
+    .opt-pal-desc{font-size:.7rem;color:var(--muted);line-height:1.5;}
 
     /* RESULTS */
-    .s-results-header { text-align: center; padding: 48px 40px 0; }
-    .s-results-eyebrow { font-size: .65rem; letter-spacing: .28em; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; }
-    .s-results-title { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 400; color: var(--cream); margin-bottom: 8px; }
-    .s-results-sub { color: var(--muted); font-size: .84rem; }
-
-    .s-results-section { max-width: 900px; margin: 0 auto; padding: 36px 40px 0; }
-    .s-section-label {
-      font-size: .6rem; letter-spacing: .26em; text-transform: uppercase; color: var(--gold);
-      margin-bottom: 20px; display: flex; align-items: center; gap: 12px;
+    #results{display:none;padding-bottom:64px;}
+    .res-header{text-align:center;padding:52px 40px 36px;}
+    .res-title{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:400;color:var(--cream);margin-bottom:8px;}
+    .res-sub{font-size:.82rem;color:var(--muted);}
+    .res-section{max-width:980px;margin:0 auto;padding:32px 40px 0;}
+    .sec-label{font-size:.59rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;display:flex;align-items:center;gap:12px;}
+    .sec-label::after{content:'';flex:1;height:1px;background:var(--line);}
+    .rec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
+    .rec-card{border:1px solid var(--line);overflow:hidden;transition:border-color .25s;}
+    .rec-card:hover{border-color:rgba(191,155,48,.35);}
+    .rec-img{width:100%;height:150px;object-fit:cover;display:block;filter:brightness(.88);}
+    .rec-body{padding:16px;}
+    .rec-cat{font-size:.54rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:4px;}
+    .rec-name{font-family:'Cormorant Garamond',serif;font-size:1.05rem;color:var(--cream);margin-bottom:6px;line-height:1.2;}
+    .rec-desc{font-size:.74rem;color:var(--muted);line-height:1.55;margin-bottom:14px;}
+    .rec-foot{display:flex;align-items:center;justify-content:space-between;}
+    .rec-price{font-size:.8rem;color:var(--cream);}
+    .rec-add{
+      border:1px solid var(--gold);background:transparent;color:var(--gold);
+      padding:6px 16px;font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;
+      cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s;
     }
-    .s-section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
-
-    .s-rec-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 32px; }
-    .s-rec-card {
-      border: 1px solid var(--line);
-      overflow: hidden;
-      transition: border-color .25s;
-    }
-    .s-rec-card:hover { border-color: rgba(191,155,48,.35); }
-    .s-rec-img { width: 100%; height: 140px; object-fit: cover; display: block; filter: brightness(.9); }
-    .s-rec-body { padding: 16px; }
-    .s-rec-cat { font-size: .55rem; letter-spacing: .18em; text-transform: uppercase; color: var(--gold); margin-bottom: 4px; }
-    .s-rec-name { font-family: 'Cormorant Garamond', serif; font-size: 1.05rem; color: var(--cream); margin-bottom: 6px; }
-    .s-rec-desc { font-size: .75rem; color: var(--muted); line-height: 1.55; margin-bottom: 14px; }
-    .s-rec-footer { display: flex; align-items: center; justify-content: space-between; }
-    .s-rec-price { font-size: .8rem; color: var(--cream); }
-    .s-rec-add {
-      border: 1px solid var(--gold); background: transparent; color: var(--gold);
-      padding: 6px 16px; font-size: .65rem; letter-spacing: .14em; text-transform: uppercase;
-      cursor: pointer; font-family: 'Inter', sans-serif; transition: all .25s;
-    }
-    .s-rec-add:hover { background: var(--gold); color: var(--black); }
-    .s-rec-add.added { background: var(--gold); color: var(--black); }
+    .rec-add:hover,.rec-add.added{background:var(--gold);color:var(--black);}
+    .rec-add:disabled{opacity:.6;cursor:default;}
 
     /* RESTART */
-    .s-restart { text-align: center; padding: 40px 40px 64px; }
-    .s-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--gold-dim) 30%, var(--gold-dim) 70%, transparent); max-width: 900px; margin: 0 auto; }
+    .restart{text-align:center;padding:40px 40px 0;}
+    .btn-ghost{
+      border:1px solid var(--line);color:var(--muted);background:transparent;
+      padding:11px 40px;font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;
+      cursor:pointer;font-family:'Inter',sans-serif;transition:all .25s;
+    }
+    .btn-ghost:hover{border-color:var(--gold);color:var(--cream);}
 
     /* TOAST */
-    #s-toast {
-      position: fixed; bottom: 24px; right: 24px; z-index: 999;
-      background: #1a1a1a; border: 1px solid var(--gold);
-      padding: 14px 20px; display: none;
-      font-size: .78rem; color: var(--cream);
-      animation: fadeIn .3s ease;
+    #toast{
+      position:fixed;bottom:24px;right:24px;z-index:999;
+      background:#161616;border:1px solid var(--gold);
+      padding:12px 20px;font-size:.78rem;color:var(--cream);
+      opacity:0;pointer-events:none;transform:translateY(8px);
+      transition:all .3s;
     }
-    #s-toast.show { display: block; }
-    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+    #toast.on{opacity:1;pointer-events:all;transform:translateY(0);}
 
-    @media(max-width: 768px) {
-      .s-nav { padding: 16px 20px; }
-      .s-hero { padding: 48px 24px 40px; }
-      .s-options { grid-template-columns: repeat(2, 1fr); gap: 12px; }
-      .s-panel { padding: 36px 20px 48px; }
-      .s-rec-grid { grid-template-columns: repeat(2, 1fr); }
-      .s-results-section { padding: 28px 20px 0; }
-      .s-step-line { width: 32px; }
+    /* FADE IN ANIMATION */
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    .fade-in{animation:fadeUp .5s ease both;}
+
+    @media(max-width:768px){
+      nav{padding:16px 20px;}
+      .q-block{padding:40px 20px 28px;}
+      .opts,.opts-pal{grid-template-columns:repeat(2,1fr);}
+      .rec-grid{grid-template-columns:repeat(2,1fr);}
+      .res-section{padding:28px 20px 0;}
+      .divider{margin:0 20px;}
     }
-    @media(max-width: 480px) {
-      .s-rec-grid { grid-template-columns: 1fr; }
+    @media(max-width:480px){
+      .rec-grid{grid-template-columns:1fr;}
     }
   </style>
 </head>
 <body>
 
-<!-- NAV -->
-<nav class="s-nav">
-  <a href="index.html" class="s-brand">Vinoris<sup>®</sup></a>
-  <a href="index.html" class="s-back">← Inicio</a>
+<nav>
+  <a href="index.html" class="brand">Vinoris<sup>®</sup></a>
+  <a href="index.html" class="back">← Inicio</a>
 </nav>
 
 <!-- HERO -->
-<div class="s-hero">
-  <p class="s-eyebrow">Sommelier Personal · Vinoris</p>
-  <h1 class="s-title">Descubre tu combinación perfecta</h1>
-  <p class="s-sub">Dos preguntas sencillas. Una recomendación curada con los mejores productos de nuestra selección.</p>
+<div class="hero">
+  <p class="eyebrow">Sommelier Personal · Vinoris</p>
+  <h1 class="hero-title">Tu selección perfecta,<br>en dos clics</h1>
+  <p class="hero-sub">Elegí la ocasión y tu paladar. Nuestro sommelier cuida el resto.</p>
 </div>
 
-<!-- STEP INDICATOR -->
-<div class="s-steps">
-  <div class="s-step-wrap">
-    <div class="s-step-num active" id="ind-1">1</div>
-    <div class="s-step-label">La ocasión</div>
-  </div>
-  <div class="s-step-line"></div>
-  <div class="s-step-wrap">
-    <div class="s-step-num" id="ind-2">2</div>
-    <div class="s-step-label">Tu paladar</div>
-  </div>
-  <div class="s-step-line"></div>
-  <div class="s-step-wrap">
-    <div class="s-step-num" id="ind-3">✓</div>
-    <div class="s-step-label">Recomendación</div>
-  </div>
-</div>
+<div class="divider"></div>
 
-<!-- PASO 1 -->
-<div class="s-panel active" id="step-1">
-  <h2 class="s-q">¿Cuál es la ocasión?</h2>
-  <div class="s-options">
-    <div class="s-opt" id="occ-romantica" onclick="selectOcc('romantica', this)">
-      <span class="s-opt-icon">🥂</span>
-      <div class="s-opt-label">Cena Romántica</div>
-      <div class="s-opt-desc">Una velada íntima y especial para dos</div>
+<!-- Q1: OCASIÓN -->
+<div class="q-block">
+  <p class="q-label">01 — La ocasión</p>
+  <p class="q-text">¿Qué celebrás hoy?</p>
+  <div class="opts">
+    <div class="opt" onclick="pick('occ','romantica',this)">
+      <span class="opt-check">✓</span>
+      <img class="opt-img" src="assets/images/som-romantica.png" alt="Cena romântica"/>
+      <div class="opt-body">
+        <div class="opt-name">Cena Romántica</div>
+        <div class="opt-desc">Una velada íntima y especial para dos</div>
+      </div>
     </div>
-    <div class="s-opt" id="occ-celebracion" onclick="selectOcc('celebracion', this)">
-      <span class="s-opt-icon">🎉</span>
-      <div class="s-opt-label">Celebración</div>
-      <div class="s-opt-desc">Brindis, reunión o fiesta especial</div>
+    <div class="opt" onclick="pick('occ','celebracion',this)">
+      <span class="opt-check">✓</span>
+      <img class="opt-img" src="assets/images/som-celebracion.png" alt="Celebración"/>
+      <div class="opt-body">
+        <div class="opt-name">Celebración</div>
+        <div class="opt-desc">Brindis, reunión o fiesta especial</div>
+      </div>
     </div>
-    <div class="s-opt" id="occ-maridaje" onclick="selectOcc('maridaje', this)">
-      <span class="s-opt-icon">🍽️</span>
-      <div class="s-opt-label">Maridaje de Mesa</div>
-      <div class="s-opt-desc">Armonizar vino con una comida específica</div>
+    <div class="opt" onclick="pick('occ','maridaje',this)">
+      <span class="opt-check">✓</span>
+      <img class="opt-img" src="assets/images/som-maridaje.png" alt="Maridaje"/>
+      <div class="opt-body">
+        <div class="opt-name">Maridaje de Mesa</div>
+        <div class="opt-desc">Armonizar vino con una comida perfecta</div>
+      </div>
     </div>
-    <div class="s-opt" id="occ-regalo" onclick="selectOcc('regalo', this)">
-      <span class="s-opt-icon">🎁</span>
-      <div class="s-opt-label">Regalo Especial</div>
-      <div class="s-opt-desc">Un detalle memorable para alguien único</div>
+    <div class="opt" onclick="pick('occ','regalo',this)">
+      <span class="opt-check">✓</span>
+      <img class="opt-img" src="assets/images/som-regalo.png" alt="Regalo"/>
+      <div class="opt-body">
+        <div class="opt-name">Regalo Especial</div>
+        <div class="opt-desc">Un detalle memorable para alguien único</div>
+      </div>
     </div>
-  </div>
-  <div class="s-actions">
-    <button class="s-btn" id="btn-next-1" onclick="goStep2()" disabled>Continuar</button>
   </div>
 </div>
 
-<!-- PASO 2 -->
-<div class="s-panel" id="step-2">
-  <h2 class="s-q">¿Cómo describes tu paladar?</h2>
-  <div class="s-options">
-    <div class="s-opt" onclick="selectPal('frutal', this)">
-      <span class="s-opt-icon">🍓</span>
-      <div class="s-opt-label">Frutal & Ligero</div>
-      <div class="s-opt-desc">Sabores frescos, aromas vivos y finales delicados</div>
+<div class="divider"></div>
+
+<!-- Q2: PALADAR -->
+<div class="q-block" id="q2-block">
+  <p class="q-label">02 — Tu paladar</p>
+  <p class="q-text">¿Cómo te describís?</p>
+  <div class="opts-pal">
+    <div class="opt-pal" onclick="pick('pal','frutal',this)">
+      <span class="opt-check">✓</span>
+      <div class="opt-pal-accent"></div>
+      <div class="opt-pal-name">Frutal &amp; Ligero</div>
+      <div class="opt-pal-desc">Frescos, aromas vivos y finales delicados</div>
     </div>
-    <div class="s-opt" onclick="selectPal('robusto', this)">
-      <span class="s-opt-icon">🍷</span>
-      <div class="s-opt-label">Robusto & Complejo</div>
-      <div class="s-opt-desc">Cuerpo pleno, taninos y matices profundos</div>
+    <div class="opt-pal" onclick="pick('pal','robusto',this)">
+      <span class="opt-check">✓</span>
+      <div class="opt-pal-accent"></div>
+      <div class="opt-pal-name">Robusto &amp; Complejo</div>
+      <div class="opt-pal-desc">Cuerpo pleno, taninos y matices profundos</div>
     </div>
-    <div class="s-opt" onclick="selectPal('cremoso', this)">
-      <span class="s-opt-icon">🧀</span>
-      <div class="s-opt-label">Suave & Cremoso</div>
-      <div class="s-opt-desc">Texturas untuosas, sabores equilibrados y delicados</div>
+    <div class="opt-pal" onclick="pick('pal','cremoso',this)">
+      <span class="opt-check">✓</span>
+      <div class="opt-pal-accent"></div>
+      <div class="opt-pal-name">Suave &amp; Cremoso</div>
+      <div class="opt-pal-desc">Texturas untuosas y sabores equilibrados</div>
     </div>
-    <div class="s-opt" onclick="selectPal('intenso', this)">
-      <span class="s-opt-icon">🌶️</span>
-      <div class="s-opt-label">Intenso & Especiado</div>
-      <div class="s-opt-desc">Sabores concentrados, especias y carácter marcado</div>
+    <div class="opt-pal" onclick="pick('pal','intenso',this)">
+      <span class="opt-check">✓</span>
+      <div class="opt-pal-accent"></div>
+      <div class="opt-pal-name">Intenso &amp; Especiado</div>
+      <div class="opt-pal-desc">Concentrado, especiado y de carácter marcado</div>
     </div>
-  </div>
-  <div class="s-actions">
-    <button class="s-btn s-btn-ghost" onclick="goStep1()">← Atrás</button>
-    <button class="s-btn" id="btn-next-2" onclick="showResults()" disabled>Ver mi recomendación</button>
   </div>
 </div>
 
 <!-- RESULTS -->
-<div id="results-area" style="display:none;">
-  <div class="s-results-header">
-    <p class="s-results-eyebrow">Tu selección Vinoris</p>
-    <h2 class="s-results-title" id="results-title">Combinación curada para ti</h2>
-    <p class="s-results-sub" id="results-sub">Productos seleccionados por nuestro sommelier digital</p>
+<div id="results">
+  <div class="divider"></div>
+  <div class="res-header fade-in">
+    <p class="eyebrow">Tu selección Vinoris</p>
+    <h2 class="res-title" id="res-title">Combinación curada para vos</h2>
+    <p class="res-sub" id="res-sub"></p>
   </div>
 
-  <div class="s-results-section" id="rec-vinos-section" style="display:none;">
-    <p class="s-section-label">Vinos Recomendados</p>
-    <div class="s-rec-grid" id="rec-vinos"></div>
+  <div class="res-section" id="sec-vinos" style="display:none">
+    <p class="sec-label">Vinos Recomendados</p>
+    <div class="rec-grid" id="grid-vinos"></div>
+  </div>
+  <div class="divider" id="div-carnes" style="display:none"></div>
+  <div class="res-section" id="sec-carnes" style="display:none">
+    <p class="sec-label">Carnes Seleccionadas</p>
+    <div class="rec-grid" id="grid-carnes"></div>
+  </div>
+  <div class="divider" id="div-quesos" style="display:none"></div>
+  <div class="res-section" id="sec-quesos" style="display:none">
+    <p class="sec-label">Quesos &amp; Lácteos</p>
+    <div class="rec-grid" id="grid-quesos"></div>
+  </div>
+  <div class="divider" id="div-pastas" style="display:none"></div>
+  <div class="res-section" id="sec-pastas" style="display:none">
+    <p class="sec-label">Pastas Artesanales</p>
+    <div class="rec-grid" id="grid-pastas"></div>
   </div>
 
-  <div class="s-divider"></div>
-
-  <div class="s-results-section" id="rec-carnes-section" style="display:none;">
-    <p class="s-section-label">Carnes Seleccionadas</p>
-    <div class="s-rec-grid" id="rec-carnes"></div>
-  </div>
-
-  <div class="s-divider"></div>
-
-  <div class="s-results-section" id="rec-quesos-section" style="display:none;">
-    <p class="s-section-label">Quesos & Lácteos</p>
-    <div class="s-rec-grid" id="rec-quesos"></div>
-  </div>
-
-  <div class="s-divider"></div>
-
-  <div class="s-results-section" id="rec-pastas-section" style="display:none;">
-    <p class="s-section-label">Pastas Artesanales</p>
-    <div class="s-rec-grid" id="rec-pastas"></div>
-  </div>
-
-  <div class="s-restart">
-    <p style="color:var(--muted);font-size:.78rem;margin-bottom:16px;">¿Querés explorar otra combinación?</p>
-    <button class="s-btn" onclick="restartFlow()">Empezar de nuevo</button>
+  <div class="restart">
+    <button class="btn-ghost" onclick="restart()">Explorar otra combinación</button>
   </div>
 </div>
 
 <!-- TOAST -->
-<div id="s-toast">Agregado al carrito ✓</div>
+<div id="toast"></div>
 
 <script>
-  /* ─── CATÁLOGO COMPLETO ─── */
-  const catalog = {
-    vinos: [
-      {
-        id: 'celia', name: 'Celia Vizcarra', cat: 'Vino · Reserva',
-        img: 'assets/images/BOTELLA CELIA.jpg',
-        desc: 'Taninos aterciopelados. 18 meses en roble francés. Viñas de 70 años.',
-        price: '₡22,500',
-        tags: ['robusto', 'intenso', 'romantica', 'regalo']
-      },
-      {
-        id: 'merlot', name: 'Vizcarra Merlot', cat: 'Vino · Castilla y León',
-        img: 'assets/images/BOTELLA MERLOT.png',
-        desc: 'Estilo Pomerol. Ciruela negra, chocolate amargo, 24 meses roble.',
-        price: '₡24,000',
-        tags: ['robusto', 'intenso', 'celebracion', 'regalo']
-      },
-      {
-        id: 'senda', name: 'Senda del Oro', cat: 'Vino · Joven',
-        img: 'assets/images/BOTELLA SENDA DEL ORO.jpg',
-        desc: 'Frambuesa, fresa y cereza fresca. Fresco y frutal. 6 meses en barrica.',
-        price: '₡14,500',
-        tags: ['frutal', 'celebracion', 'maridaje']
-      },
-      {
-        id: 'torralvo', name: 'Torralvo', cat: 'Vino · Crianza',
-        img: 'assets/images/BOTELLA TORRALVO.jpg',
-        desc: 'Viñedos 60 años. Mineral y potente. Moras, regaliz negro y especias.',
-        price: '₡18,500',
-        tags: ['intenso', 'robusto', 'maridaje', 'regalo']
-      },
-      {
-        id: 'vizcarra15', name: 'Vizcarra 15 Meses', cat: 'Vino · Crianza',
-        img: 'assets/images/BOTELLA VIZCARRA 15 MESES.jpg',
-        desc: 'El equilibrio perfecto. Carnoso, sedoso y prolongado. Un clásico.',
-        price: '₡19,500',
-        tags: ['robusto', 'cremoso', 'romantica', 'celebracion']
-      }
-    ],
-    carnes: [
-      {
-        id: 'rib-eye', name: 'Rib Eye Wagyu', cat: 'Carne · Wagyu A5',
-        img: 'assets/images/carne-rib-eye.png',
-        desc: 'Wagyu A5 japonés. Veteado extraordinario. La cumbre de la carne.',
-        price: '₡38,000/kg',
-        tags: ['robusto', 'intenso', 'celebracion', 'regalo']
-      },
-      {
-        id: 'ny-steak', name: 'New York Steak', cat: 'Carne · Black Angus',
-        img: 'assets/images/carne-ny-steak.png',
-        desc: 'Black Angus premium. Jugoso, con el equilibrio perfecto de marmoleo.',
-        price: '₡28,000/kg',
-        tags: ['robusto', 'maridaje', 'romantica']
-      },
-      {
-        id: 'lomito', name: 'Lomito Angus', cat: 'Carne · Black Angus',
-        img: 'assets/images/carne-lomito.png',
-        desc: 'El corte más suave. Textura sedosa y sabor sublime.',
-        price: '₡32,000/kg',
-        tags: ['cremoso', 'frutal', 'romantica', 'regalo']
-      }
-    ],
-    quesos: [
-      {
-        id: 'parmigiano', name: 'Parmigiano Reggiano', cat: 'Queso · Italia',
-        img: 'assets/images/queso-parmigiano.png',
-        desc: '24 meses de maduración. El rey de los quesos italianos.',
-        price: '₡12,000/kg',
-        tags: ['intenso', 'robusto', 'maridaje']
-      },
-      {
-        id: 'burrata', name: 'Burrata', cat: 'Queso · Puglia',
-        img: 'assets/images/queso-burrata.png',
-        desc: 'Interior de stracciatella fluyente. Delicada y seductora.',
-        price: '₡16,000/kg',
-        tags: ['cremoso', 'frutal', 'romantica', 'maridaje']
-      },
-      {
-        id: 'gorgonzola', name: 'Gorgonzola DOP', cat: 'Queso · Lombardía',
-        img: 'assets/images/queso-gorgonzola.png',
-        desc: 'Veteado azul profundo. Intenso, cremoso y con carácter único.',
-        price: '₡14,000/kg',
-        tags: ['intenso', 'robusto', 'celebracion']
-      }
-    ],
-    pastas: [
-      {
-        id: 'lasagna', name: 'Lasagna artesanal italiana', cat: 'Pasta · Artesanal',
-        img: 'assets/images/pasta-lasagna.png',
-        desc: 'Pasta fresca, ragú boloñés de cocción lenta y béchamel cremosa.',
-        price: '₡14,500/porción',
-        tags: ['cremoso', 'robusto', 'maridaje', 'celebracion']
-      },
-      {
-        id: 'ravioli', name: 'Ravioli ricotta & espinaca', cat: 'Pasta · Artesanal',
-        img: 'assets/images/pasta-ravioli.png',
-        desc: 'Pasta fresca rellena, mantequilla dorada y salvia. Delicado y elegante.',
-        price: '₡13,500/porción',
-        tags: ['cremoso', 'frutal', 'romantica', 'maridaje']
-      }
-    ]
+const CAT = {
+  vinos: [
+    {id:'celia',    name:'Celia Vizcarra',         sub:'Vino · D.O. Ribera del Duero',  img:'assets/images/BOTELLA CELIA.jpg',              desc:'Taninos aterciopelados. 18 meses roble francés. Viñas de 70 años.',      price:'₡22,500',   tags:['robusto','intenso','romantica','regalo']},
+    {id:'merlot',   name:'Vizcarra Merlot',         sub:'Vino · Castilla y León',         img:'assets/images/BOTELLA MERLOT.png',             desc:'Estilo Pomerol. Ciruela negra, chocolate amargo. 24 meses en roble.',    price:'₡24,000',   tags:['robusto','intenso','celebracion','regalo']},
+    {id:'senda',    name:'Senda del Oro',            sub:'Vino · Joven',                   img:'assets/images/BOTELLA SENDA DEL ORO.jpg',      desc:'Frambuesa, fresa, cereza fresca. Fresco, frutal y vibrante.',           price:'₡14,500',   tags:['frutal','celebracion','maridaje']},
+    {id:'torralvo', name:'Torralvo',                  sub:'Vino · Crianza',                 img:'assets/images/BOTELLA TORRALVO.jpg',           desc:'Viñedos 60 años. Mineral y potente. Moras, regaliz y especias.',        price:'₡18,500',   tags:['intenso','robusto','maridaje','regalo']},
+    {id:'vizcarra15',name:'Vizcarra 15 Meses',       sub:'Vino · Crianza',                 img:'assets/images/BOTELLA VIZCARRA 15 MESES.jpg',  desc:'El equilibrio perfecto. Carnoso, sedoso y prolongado.',                 price:'₡19,500',   tags:['robusto','cremoso','romantica','celebracion']},
+  ],
+  carnes: [
+    {id:'ribeye',   name:'Rib Eye Wagyu',            sub:'Carne · Wagyu A5',               img:'assets/images/carne-ribeye.png',               desc:'Wagyu A5 japonés. Veteado extraordinario. La cumbre de la carne.',      price:'₡38,000/kg',tags:['robusto','intenso','celebracion','regalo']},
+    {id:'newyork',  name:'New York Steak',            sub:'Carne · Black Angus',            img:'assets/images/carne-newyork.png',              desc:'Black Angus premium. Jugoso y con marmoleo perfecto.',                  price:'₡28,000/kg',tags:['robusto','maridaje','romantica']},
+    {id:'lomito',   name:'Lomito Angus',              sub:'Carne · Black Angus',            img:'assets/images/carne-lomito.png',               desc:'El corte más suave. Textura sedosa y sabor sublime.',                   price:'₡32,000/kg',tags:['cremoso','frutal','romantica','regalo']},
+  ],
+  quesos: [
+    {id:'parmigiano',name:'Parmigiano Reggiano',     sub:'Queso · Italia',                 img:'assets/images/queso-parmigiano.png',           desc:'24 meses de maduración. El rey de los quesos italianos.',               price:'₡12,000/kg',tags:['intenso','robusto','maridaje']},
+    {id:'burrata',  name:'Burrata',                   sub:'Queso · Puglia',                 img:'assets/images/queso-burrata.png',              desc:'Interior de stracciatella fluyente. Delicada y seductora.',             price:'₡16,000/kg',tags:['cremoso','frutal','romantica','maridaje']},
+    {id:'gorgonzola',name:'Gorgonzola DOP',          sub:'Queso · Lombardía',              img:'assets/images/queso-gorgonzola.png',           desc:'Veteado azul profundo. Intenso, cremoso y con carácter único.',         price:'₡14,000/kg',tags:['intenso','robusto','celebracion']},
+  ],
+  pastas: [
+    {id:'lasagna',  name:'Lasagna artesanal',         sub:'Pasta · Artesanal',              img:'assets/images/pasta-lasagna.png',              desc:'Pasta fresca, ragú boloñés lento y béchamel cremosa.',                  price:'₡14,500',   tags:['cremoso','robusto','maridaje','celebracion']},
+    {id:'ravioli',  name:'Ravioli ricotta & espinaca',sub:'Pasta · Artesanal',              img:'assets/images/pasta-ravioli.png',              desc:'Pasta fresca rellena, mantequilla dorada y salvia. Delicado.',          price:'₡13,500',   tags:['cremoso','frutal','romantica','maridaje']},
+  ],
+};
+
+let sel = {occ: null, pal: null};
+
+function pick(type, val, el) {
+  const group = type === 'occ' ? document.querySelectorAll('.opt') : document.querySelectorAll('.opt-pal');
+  group.forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+  sel[type] = val;
+  if (sel.occ && sel.pal) {
+    setTimeout(render, 220); // brief pause to show selection
+  }
+}
+
+function render() {
+  const titles = {
+    romantica_cremoso:  ['Una velada íntima y delicada',      'Selección para noches de suavidad y romance'],
+    romantica_frutal:   ['Una noche vibrante y fresca',        'Ligero y elegante para compartir juntos'],
+    romantica_robusto:  ['Cena con carácter y pasión',         'Vinos con cuerpo y carnes de excepción'],
+    romantica_intenso:  ['Intensidad y sofisticación',          'Para quienes disfrutan sabores profundos'],
+    celebracion_frutal: ['¡Brindemos con estilo!',             'Selección festiva: frescos y memorables'],
+    celebracion_robusto:['Celebración de alto vuelo',          'Los grandes vinos para los grandes momentos'],
+    celebracion_cremoso:['Elegancia en cada bocado',           'Maridaje cremoso para celebrar con clase'],
+    celebracion_intenso:['Una fiesta de sabores',              'Intensidad y complejidad para momentos únicos'],
+    maridaje_frutal:    ['El arte del maridaje ligero',        'Combinaciones frescas que realzan cada plato'],
+    maridaje_robusto:   ['Maridaje de poder',                  'Vinos y alimentos que se potencian mutuamente'],
+    maridaje_cremoso:   ['Armonía suave en la mesa',           'Cremosidad perfectamente equilibrada'],
+    maridaje_intenso:   ['Maridaje con carácter',              'Sabores intensos que se complementan'],
+    regalo_frutal:      ['Un regalo fresco y memorable',       'Elegante y accesible para sorprender'],
+    regalo_robusto:     ['El regalo del connoisseur',          'Premium para impresionar a quien más lo merece'],
+    regalo_cremoso:     ['Un detalle con alma',                'Delicado, cremoso y de alta calidad'],
+    regalo_intenso:     ['Un regalo con personalidad',         'Para el paladar exigente que valora la complejidad'],
   };
+  const key = `${sel.occ}_${sel.pal}`;
+  const [t, s] = titles[key] || ['Tu Selección Vinoris', 'Curada especialmente para vos'];
+  document.getElementById('res-title').textContent = t;
+  document.getElementById('res-sub').textContent = s;
 
-  /* ─── STATE ─── */
-  let selectedOcc = null;
-  let selectedPal = null;
+  fill('vinos',  'sec-vinos',  'grid-vinos',  'div-carnes');
+  fill('carnes', 'sec-carnes', 'grid-carnes', 'div-quesos');
+  fill('quesos', 'sec-quesos', 'grid-quesos', 'div-pastas');
+  fill('pastas', 'sec-pastas', 'grid-pastas', null);
 
-  /* ─── STEP 1 ─── */
-  function selectOcc(val, el) {
-    document.querySelectorAll('#step-1 .s-opt').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedOcc = val;
-    document.getElementById('btn-next-1').disabled = false;
-  }
+  const res = document.getElementById('results');
+  res.style.display = 'block';
+  res.scrollIntoView({behavior:'smooth', block:'start'});
+}
 
-  /* ─── STEP 2 ─── */
-  function selectPal(val, el) {
-    document.querySelectorAll('#step-2 .s-opt').forEach(o => o.classList.remove('selected'));
-    el.classList.add('selected');
-    selectedPal = val;
-    document.getElementById('btn-next-2').disabled = false;
-  }
-
-  /* ─── NAVIGATION ─── */
-  function goStep1() {
-    document.getElementById('step-1').classList.add('active');
-    document.getElementById('step-2').classList.remove('active');
-    document.getElementById('results-area').style.display = 'none';
-    setIndicator(1);
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  function goStep2() {
-    if (!selectedOcc) return;
-    document.getElementById('step-1').classList.remove('active');
-    document.getElementById('step-2').classList.add('active');
-    setIndicator(2);
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  function setIndicator(step) {
-    const i1 = document.getElementById('ind-1');
-    const i2 = document.getElementById('ind-2');
-    const i3 = document.getElementById('ind-3');
-    i1.className = step > 1 ? 's-step-num done' : 's-step-num active';
-    i2.className = step === 2 ? 's-step-num active' : (step > 2 ? 's-step-num done' : 's-step-num');
-    i3.className = step === 3 ? 's-step-num done' : 's-step-num';
-  }
-
-  /* ─── RECOMMENDATION ENGINE ─── */
-  function showResults() {
-    if (!selectedPal) return;
-    document.getElementById('step-2').classList.remove('active');
-    setIndicator(3);
-
-    // Title & sub based on combination
-    const titles = {
-      romantica_cremoso: ['Una velada íntima y delicada', 'Selección para noches de suavidad y romance'],
-      romantica_frutal: ['Una noche vibrante y fresca', 'Selección ligera y elegante para disfrutar juntos'],
-      romantica_robusto: ['Una cena con carácter y pasión', 'Vinos con cuerpo y carnes de excepción'],
-      romantica_intenso: ['Intensidad y sofisticación', 'Para quienes disfrutan sabores marcados y profundos'],
-      celebracion_frutal: ['¡Brindemos con estilo!', 'Selección festiva: frescos, vibrantes y memorables'],
-      celebracion_robusto: ['Una celebración de alto vuelo', 'Los grandes vinos para los grandes momentos'],
-      celebracion_cremoso: ['Elegancia y placer en cada bocado', 'Maridaje cremoso para celebrar con clase'],
-      celebracion_intenso: ['Una fiesta de sabores', 'Intensidad y complejidad para momentos únicos'],
-      maridaje_frutal: ['El arte del maridaje ligero', 'Combinaciones frescas que realzan cada plato'],
-      maridaje_robusto: ['Maridaje de poder', 'Vinos y alimentos que se potencian mutuamente'],
-      maridaje_cremoso: ['Armonía suave en la mesa', 'Creaminess perfectamente equilibrada'],
-      maridaje_intenso: ['Maridaje con carácter', 'Sabores intensos que se complementan en el paladar'],
-      regalo_frutal: ['Un regalo fresco y memorable', 'Productos elegantes y accesibles para sorprender'],
-      regalo_robusto: ['El regalo del connoisseur', 'Selección premium para impresionar a quien más lo merece'],
-      regalo_cremoso: ['Un detalle con alma', 'Delicado, cremoso y de alta calidad'],
-      regalo_intenso: ['Un regalo con personalidad', 'Para el paladar exigente que valora la complejidad']
-    };
-    const key = `${selectedOcc}_${selectedPal}`;
-    const [t, s] = titles[key] || ['Tu Selección Vinoris', 'Curada especialmente para ti'];
-    document.getElementById('results-title').textContent = t;
-    document.getElementById('results-sub').textContent = s;
-
-    // Filter products: must match BOTH occasion AND palate
-    const renderSection = (items, sectionId, gridId) => {
-      const filtered = items.filter(p =>
-        p.tags.includes(selectedOcc) && p.tags.includes(selectedPal)
-      );
-      const fallback = items.filter(p =>
-        p.tags.includes(selectedOcc) || p.tags.includes(selectedPal)
-      ).slice(0, 2);
-      const show = filtered.length ? filtered : fallback;
-      document.getElementById(sectionId).style.display = show.length ? 'block' : 'none';
-      document.getElementById(gridId).innerHTML = show.map(p => renderCard(p)).join('');
-    };
-
-    renderSection(catalog.vinos,  'rec-vinos-section',  'rec-vinos');
-    renderSection(catalog.carnes, 'rec-carnes-section', 'rec-carnes');
-    renderSection(catalog.quesos, 'rec-quesos-section', 'rec-quesos');
-    renderSection(catalog.pastas, 'rec-pastas-section', 'rec-pastas');
-
-    document.getElementById('results-area').style.display = 'block';
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
-
-  function renderCard(p) {
-    return `
-      <div class="s-rec-card">
-        <img class="s-rec-img" src="${p.img}" alt="${p.name}" onerror="this.style.background='#1a1a1a';this.style.height='140px'"/>
-        <div class="s-rec-body">
-          <p class="s-rec-cat">${p.cat}</p>
-          <h3 class="s-rec-name">${p.name}</h3>
-          <p class="s-rec-desc">${p.desc}</p>
-          <div class="s-rec-footer">
-            <span class="s-rec-price">${p.price}</span>
-            <button class="s-rec-add" id="add-${p.id}" onclick="addToCartSom('${p.id}','${p.name}','${p.price}', this)">Agregar</button>
-          </div>
+function fill(cat, secId, gridId, divId) {
+  const items = CAT[cat];
+  const exact = items.filter(p => p.tags.includes(sel.occ) && p.tags.includes(sel.pal));
+  const fallback = items.filter(p => p.tags.includes(sel.occ) || p.tags.includes(sel.pal)).slice(0,2);
+  const show = exact.length ? exact : fallback;
+  const sec = document.getElementById(secId);
+  sec.style.display = show.length ? 'block' : 'none';
+  if (divId) document.getElementById(divId).style.display = show.length ? 'block' : 'none';
+  document.getElementById(gridId).innerHTML = show.map(p => `
+    <div class="rec-card fade-in">
+      <img class="rec-img" src="${p.img}" alt="${p.name}" onerror="this.parentElement.style.display='none'"/>
+      <div class="rec-body">
+        <p class="rec-cat">${p.sub}</p>
+        <h3 class="rec-name">${p.name}</h3>
+        <p class="rec-desc">${p.desc}</p>
+        <div class="rec-foot">
+          <span class="rec-price">${p.price}</span>
+          <button class="rec-add" id="btn-${p.id}" onclick="addCart('${p.id}','${p.name}','${p.price}',this)">Agregar</button>
         </div>
-      </div>`;
-  }
+      </div>
+    </div>`).join('');
+}
 
-  /* ─── CART via localStorage ─── */
-  function addToCartSom(id, name, priceStr, btn) {
-    // Parse price number
-    const raw = priceStr.replace(/[₡,\/[a-z]+]/gi, '').trim();
-    const price = parseInt(raw) || 0;
+function addCart(id, name, priceStr, btn) {
+  const raw = parseInt(priceStr.replace(/[^0-9]/g,'')) || 0;
+  let cart = [];
+  try { cart = JSON.parse(localStorage.getItem('vinoris_cart') || '[]'); } catch(e){}
+  const ex = cart.find(i => i.id === id);
+  if (ex) { ex.qty += 1; } else { cart.push({id, key:id, name, price:raw, img:'', unit:'ud', qty:1}); }
+  localStorage.setItem('vinoris_cart', JSON.stringify(cart));
+  btn.textContent = '✓ Agregado';
+  btn.classList.add('added');
+  btn.disabled = true;
+  const t = document.getElementById('toast');
+  t.textContent = name + ' agregado al carrito ✓';
+  t.classList.add('on');
+  clearTimeout(t._tid);
+  t._tid = setTimeout(() => t.classList.remove('on'), 2600);
+}
 
-    // Load existing cart from localStorage
-    let cart = JSON.parse(localStorage.getItem('vinoris_cart') || '[]');
-    const existing = cart.find(i => i.id === id);
-    if (existing) {
-      existing.qty += 1;
-    } else {
-      cart.push({ id, name, price, qty: 1 });
-    }
-    localStorage.setItem('vinoris_cart', JSON.stringify(cart));
-
-    // Visual feedback
-    btn.textContent = '✓ Agregado';
-    btn.classList.add('added');
-    btn.disabled = true;
-
-    // Toast
-    const toast = document.getElementById('s-toast');
-    toast.textContent = `${name} agregado al carrito ✓`;
-    toast.classList.add('show');
-    setTimeout(() => toast.classList.remove('show'), 2500);
-  }
-
-  function restartFlow() {
-    selectedOcc = null;
-    selectedPal = null;
-    document.querySelectorAll('.s-opt').forEach(o => o.classList.remove('selected'));
-    document.getElementById('btn-next-1').disabled = true;
-    document.getElementById('btn-next-2').disabled = true;
-    document.getElementById('results-area').style.display = 'none';
-    document.getElementById('step-1').classList.add('active');
-    setIndicator(1);
-    window.scrollTo({top: 0, behavior: 'smooth'});
-  }
+function restart() {
+  sel = {occ:null, pal:null};
+  document.querySelectorAll('.opt,.opt-pal').forEach(o => o.classList.remove('selected'));
+  document.getElementById('results').style.display = 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
+}
 </script>
-
 </body>
 </html>
