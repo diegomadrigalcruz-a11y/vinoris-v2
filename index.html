@@ -5,12 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Vinoris | Gastronomía del Mundo</title>
   <meta name="description" content="Vinoris trae a Costa Rica una selección exclusiva de vinos de denominación de origen y gastronomía mundial."/>
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='60' r='18' fill='%23c9a84c'/><circle cx='32' cy='48' r='16' fill='%23c9a84c'/><circle cx='68' cy='48' r='16' fill='%23c9a84c'/><circle cx='50' cy='32' r='14' fill='%23c9a84c'/><ellipse cx='50' cy='14' rx='6' ry='12' fill='%23c9a84c'/></svg>"/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='65' r='14' fill='%237B2D50'/><circle cx='35' cy='50' r='13' fill='%237B2D50'/><circle cx='65' cy='50' r='13' fill='%237B2D50'/><circle cx='50' cy='36' r='12' fill='%237B2D50'/><ellipse cx='50' cy='16' rx='7' ry='14' fill='%237B2D50' transform='rotate(-15 50 16)'/></svg>"/>
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
   <style>
     :root{
       --gold:#c9a84c; --gold-light:#e8c97a; --gold-dim:rgba(201,168,76,0.15);
+      --burgundy:#7B2D50; --burgundy-light:#9B4070; --burgundy-dim:rgba(123,45,80,0.15);
       --obsidian:#0a0a0a; --dark:#111009; --dark2:#18150e; --dark3:#1e1a11;
       --cream:#f5edd8; --text-dim:#9a9690; --muted:rgba(245,237,216,0.55);
       --radius:4px;
@@ -29,7 +30,7 @@
     }
     nav.scrolled{background:rgba(10,10,10,0.98);border-bottom:1px solid rgba(201,168,76,0.1);}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .nav-logo-icon svg{width:26px;height:26px;}
+    .nav-logo-icon svg{width:36px;height:36px;}
     .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;color:var(--cream);letter-spacing:.08em;}
     .nav-logo-text sup{font-size:.6em;color:var(--gold);vertical-align:super;}
     .nav-links{display:flex;align-items:center;gap:32px;}
@@ -272,13 +273,12 @@
 <nav id="main-nav">
   <a href="#" class="nav-logo">
     <span class="nav-logo-icon">
-      <svg viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="13" cy="18" r="5.5" fill="#C9A84C"/>
-        <circle cx="6"  cy="12" r="5"   fill="#C9A84C"/>
-        <circle cx="20" cy="12" r="5"   fill="#C9A84C"/>
-        <circle cx="13" cy="6"  r="4.5" fill="#C9A84C"/>
-        <line x1="13" y1="23" x2="13" y2="30" stroke="#C9A84C" stroke-width="1.5"/>
-        <line x1="10" y1="28" x2="16" y2="28" stroke="#C9A84C" stroke-width="1.5"/>
+      <svg viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <ellipse cx="15" cy="4" rx="4" ry="7" fill="#7B2D50" transform="rotate(-15 15 4)"/>
+        <circle cx="15" cy="14" r="4" fill="#7B2D50"/>
+        <circle cx="8"  cy="20" r="4.5" fill="#7B2D50"/>
+        <circle cx="22" cy="20" r="4.5" fill="#7B2D50"/>
+        <circle cx="15" cy="27" r="5" fill="#7B2D50"/>
       </svg>
     </span>
     <span class="nav-logo-text">Vinoris<sup>®</sup></span>
@@ -302,13 +302,13 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <svg class="hero-wm" viewBox="0 0 300 300" fill="none">
-    <circle cx="150" cy="180" r="55" fill="white"/>
-    <circle cx="90"  cy="130" r="50" fill="white"/>
-    <circle cx="210" cy="130" r="50" fill="white"/>
-    <circle cx="150" cy="75"  r="45" fill="white"/>
-    <circle cx="90"  cy="50"  r="35" fill="white" opacity=".6"/>
-    <circle cx="210" cy="50"  r="35" fill="white" opacity=".6"/>
+  <svg class="hero-wm" viewBox="0 0 300 380" fill="none">
+    <ellipse cx="150" cy="28" rx="22" ry="42" fill="#7B2D50" transform="rotate(-15 150 28)"/>
+    <circle cx="150" cy="95" r="30" fill="#7B2D50"/>
+    <circle cx="105" cy="145" r="35" fill="#7B2D50"/>
+    <circle cx="195" cy="145" r="35" fill="#7B2D50"/>
+    <circle cx="150" cy="200" r="40" fill="#7B2D50"/>
+    <text x="150" y="310" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="72" font-weight="400" fill="#7B2D50" letter-spacing="4">Vinoris</text>
   </svg>
   <div class="hero-content">
     <div class="hero-badge">🚚 <span data-es="48h Entrega en GAM" data-en="48h Delivery in GAM">48h Entrega en GAM</span></div>
@@ -843,11 +843,12 @@
   <div class="footer-grid">
     <div>
       <div class="footer-logo">
-        <svg width="20" height="24" viewBox="0 0 26 30" fill="none">
-          <circle cx="13" cy="18" r="5.5" fill="#C9A84C"/>
-          <circle cx="6"  cy="12" r="5"   fill="#C9A84C"/>
-          <circle cx="20" cy="12" r="5"   fill="#C9A84C"/>
-          <circle cx="13" cy="6"  r="4.5" fill="#C9A84C"/>
+        <svg width="28" height="34" viewBox="0 0 30 36" fill="none">
+          <ellipse cx="15" cy="4" rx="4" ry="7" fill="#7B2D50" transform="rotate(-15 15 4)"/>
+          <circle cx="15" cy="14" r="4" fill="#7B2D50"/>
+          <circle cx="8"  cy="20" r="4.5" fill="#7B2D50"/>
+          <circle cx="22" cy="20" r="4.5" fill="#7B2D50"/>
+          <circle cx="15" cy="27" r="5" fill="#7B2D50"/>
         </svg>
         <span class="footer-logo-text">Vinoris<sup>®</sup></span>
       </div>
