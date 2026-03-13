@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Vinoris | Gastronomía del Mundo</title>
+  <meta name="description" content="Vinoris trae a Costa Rica una selección exclusiva de vinos de denominación de origen y gastronomía mundial."/>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='60' r='18' fill='%23c9a84c'/><circle cx='32' cy='48' r='16' fill='%23c9a84c'/><circle cx='68' cy='48' r='16' fill='%23c9a84c'/><circle cx='50' cy='32' r='14' fill='%23c9a84c'/><ellipse cx='50' cy='14' rx='6' ry='12' fill='%23c9a84c'/></svg>"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root{
+      --gold:#c9a84c; --gold-light:#e8c97a; --gold-dim:rgba(201,168,76,0.15);
+      --obsidian:#0a0a0a; --dark:#111009; --dark2:#18150e; --dark3:#1e1a11;
+      --cream:#f5edd8; --text-dim:#9a9690; --muted:rgba(245,237,216,0.55);
+      --radius:4px;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+    html{scroll-behavior:smooth;}
+    body{background:var(--obsidian);color:var(--cream);font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;overflow-x:hidden;}
+
+    /* ── NAV ── */
+    nav{
+      position:fixed;top:0;left:0;right:0;z-index:1000;
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 48px;
+      background:linear-gradient(to bottom,rgba(10,10,10,0.98),rgba(10,10,10,0));
+      backdrop-filter:blur(10px);transition:background .3s;
+    }
+    nav.scrolled{background:rgba(10,10,10,0.98);border-bottom:1px solid rgba(201,168,76,0.1);}
+    .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+    .nav-logo-icon svg{width:26px;height:26px;}
+    .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;color:var(--cream);letter-spacing:.08em;}
+    .nav-logo-text sup{font-size:.6em;color:var(--gold);vertical-align:super;}
+    .nav-links{display:flex;align-items:center;gap:32px;}
+    .nav-links a{color:var(--text-dim);text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;}
+    .nav-links a:hover{color:var(--cream);}
+    .nav-right{display:flex;align-items:center;gap:16px;}
+    #lang-btn{background:none;border:1px solid rgba(201,168,76,0.3);color:var(--gold);padding:5px 12px;border-radius:20px;cursor:pointer;font-size:.72rem;letter-spacing:.08em;font-family:'Inter',sans-serif;transition:all .2s;}
+    #lang-btn:hover{background:rgba(201,168,76,0.1);border-color:var(--gold);}
+    .cart-btn{background:none;border:none;color:var(--cream);cursor:pointer;display:flex;align-items:center;gap:6px;font-size:.82rem;letter-spacing:.05em;padding:6px 10px;border-radius:2px;transition:color .2s;}
+    .cart-btn:hover{color:var(--gold);}
+    .cart-count{background:var(--gold);color:var(--obsidian);width:18px;height:18px;border-radius:50%;font-size:.65rem;font-weight:700;display:flex;align-items:center;justify-content:center;}
+    .btn-sommelier{background:var(--gold);color:var(--obsidian);border:none;padding:8px 20px;border-radius:2px;cursor:pointer;font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;font-family:'Inter',sans-serif;font-weight:500;transition:background .2s;}
+    .btn-sommelier:hover{background:var(--gold-light);}
+
+    /* ── HERO ── */
+    #hero{position:relative;height:100vh;display:flex;align-items:center;justify-content:center;overflow:hidden;}
+    #hero::before{content:'';position:absolute;inset:0;background:url('assets/images/hero-bg.jpg') center/cover no-repeat;filter:brightness(.28);z-index:0;}
+    #hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at center,transparent 20%,rgba(10,10,10,.8)100%);z-index:1;}
+    .hero-wm{position:absolute;z-index:2;opacity:.05;width:480px;height:480px;}
+    .hero-content{position:relative;z-index:3;text-align:center;max-width:720px;padding:0 24px;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(201,168,76,.35);padding:6px 16px;border-radius:20px;margin-bottom:28px;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,7vw,5.5rem);font-weight:300;line-height:1.05;margin-bottom:24px;}
+    .hero-title em{font-style:italic;color:var(--gold);}
+    .hero-sub{color:var(--muted);font-size:1rem;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto;}
+    .hero-cta{display:inline-block;background:var(--gold);color:var(--obsidian);padding:14px 40px;text-decoration:none;font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;font-weight:500;transition:background .2s;}
+    .hero-cta:hover{background:var(--gold-light);}
+
+    /* ── TRUST BAR ── */
+    .trust-bar{background:var(--dark2);border-top:1px solid rgba(201,168,76,.1);border-bottom:1px solid rgba(201,168,76,.1);padding:24px 48px;}
+    .trust-inner{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;max-width:1100px;margin:0 auto;}
+    .trust-item{display:flex;align-items:center;gap:12px;}
+    .trust-icon{font-size:1.4rem;flex-shrink:0;}
+    .trust-text strong{display:block;font-size:.82rem;font-weight:500;color:var(--cream);letter-spacing:.04em;}
+    .trust-text span{font-size:.72rem;color:var(--text-dim);}
+
+    /* ── MARQUEE ── */
+    .marquee-strip{background:var(--gold);padding:11px 0;overflow:hidden;}
+    .marquee-track{display:flex;align-items:center;gap:28px;animation:marquee 28s linear infinite;white-space:nowrap;}
+    .marquee-track span{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--obsidian);font-weight:500;}
+    .marquee-sep{color:var(--obsidian);opacity:.5;font-size:.8rem;}
+    @keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+
+    /* ── SECTIONS ── */
+    section{padding:96px 48px;}
+    .section-label{font-size:.68rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:12px;}
+    .section-label::before,.section-label::after{content:'';flex:0 0 28px;height:1px;background:rgba(201,168,76,.4);}
+    .section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;margin-bottom:16px;text-align:center;}
+    .section-sub{color:var(--muted);font-size:.92rem;text-align:center;max-width:560px;margin:0 auto 56px;}
+
+    /* ── CAROUSEL ── */
+    #vinos{background:var(--dark2);}
+    .carousel-wrapper{position:relative;overflow:hidden;max-width:1100px;margin:0 auto;}
+    .carousel-track{display:flex;transition:transform .7s cubic-bezier(.25,.46,.45,.94);will-change:transform;}
+    .carousel-slide{min-width:100%;display:flex;align-items:stretch;flex-shrink:0;}
+    .slide-img{width:44%;display:flex;align-items:center;justify-content:center;background:var(--dark3);padding:56px;}
+    .slide-img img{max-height:400px;max-width:100%;object-fit:contain;filter:drop-shadow(0 20px 48px rgba(0,0,0,.7));}
+    .slide-info{flex:1;padding:60px 52px;display:flex;flex-direction:column;justify-content:center;background:var(--dark3);border-left:1px solid rgba(201,168,76,.08);}
+    .slide-do{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+    .slide-name{font-family:'Cormorant Garamond',serif;font-size:2.5rem;font-weight:300;margin-bottom:16px;line-height:1.1;}
+    .slide-desc{color:var(--muted);font-size:.9rem;line-height:1.85;margin-bottom:28px;max-width:400px;}
+    .slide-tags{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:28px;}
+    .slide-tag{border:1px solid rgba(201,168,76,.3);color:var(--gold);padding:3px 11px;font-size:.7rem;letter-spacing:.08em;border-radius:2px;}
+    .slide-actions{display:flex;gap:10px;}
+    .btn-discover{background:var(--gold);color:var(--obsidian);border:none;padding:11px 26px;cursor:pointer;font-size:.76rem;letter-spacing:.15em;text-transform:uppercase;font-family:'Inter',sans-serif;transition:background .2s;}
+    .btn-discover:hover{background:var(--gold-light);}
+    .btn-cart{background:none;border:1px solid rgba(201,168,76,.35);color:var(--gold);padding:11px 18px;cursor:pointer;font-size:.76rem;letter-spacing:.08em;font-family:'Inter',sans-serif;transition:all .2s;}
+    .btn-cart:hover{border-color:var(--gold);background:rgba(201,168,76,.06);}
+    .carousel-nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:20px auto 0;padding:0 4px;}
+    .carousel-dots{display:flex;gap:7px;}
+    .dot{width:6px;height:6px;border-radius:50%;background:rgba(201,168,76,.25);cursor:pointer;border:none;padding:0;transition:all .3s;}
+    .dot.active{background:var(--gold);transform:scale(1.4);}
+    .carousel-arrows{display:flex;gap:8px;}
+    .arrow-btn{background:rgba(201,168,76,.08);border:1px solid rgba(201,168,76,.25);color:var(--gold);width:40px;height:40px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;font-size:1rem;}
+    .arrow-btn:hover{background:rgba(201,168,76,.18);}
+
+    /* ── EXPERIENCES ── */
+    #experiencias{background:var(--dark);}
+    .experiences-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;max-width:1100px;margin:0 auto;}
+    .exp-card{position:relative;border-radius:var(--radius);overflow:hidden;cursor:pointer;aspect-ratio:16/9;}
+    .exp-card img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .exp-card:hover img{transform:scale(1.04);}
+    .exp-card::after{content:'';position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,10,.9) 0%,rgba(10,10,10,.3) 60%,transparent 100%);}
+    .exp-card-content{position:absolute;bottom:0;left:0;right:0;z-index:2;padding:28px;}
+    .exp-badge{display:inline-block;background:var(--gold);color:var(--obsidian);font-size:.65rem;padding:3px 10px;letter-spacing:.15em;text-transform:uppercase;border-radius:20px;margin-bottom:10px;}
+    .exp-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:400;line-height:1.2;margin-bottom:6px;}
+    .exp-sub{color:var(--muted);font-size:.8rem;}
+
+    /* ── SOMMELIER MODAL ── */
+    #sommelier-modal{display:none;position:fixed;inset:0;z-index:2000;background:rgba(10,10,10,.93);backdrop-filter:blur(14px);align-items:center;justify-content:center;}
+    #sommelier-modal.open{display:flex;}
+    .modal-box{background:var(--dark3);border:1px solid rgba(201,168,76,.2);width:90%;max-width:680px;max-height:88vh;overflow-y:auto;padding:48px;position:relative;border-radius:2px;}
+    .modal-close{position:absolute;top:20px;right:24px;background:none;border:none;color:var(--text-dim);font-size:1.3rem;cursor:pointer;transition:color .2s;}
+    .modal-close:hover{color:var(--gold);}
+    .modal-grape-icon{text-align:center;margin-bottom:4px;font-size:1.8rem;}
+    .modal-brand{text-align:center;font-size:.62rem;letter-spacing:.35em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+    .modal-title{font-family:'Cormorant Garamond',serif;font-size:1.9rem;font-weight:300;text-align:center;margin-bottom:8px;}
+    .modal-lead{color:var(--muted);font-size:.84rem;text-align:center;margin-bottom:32px;}
+    .som-messages{min-height:100px;margin-bottom:16px;}
+    .som-msg{padding:11px 15px;border-radius:2px;margin-bottom:9px;font-size:.87rem;line-height:1.75;}
+    .som-msg.user{background:rgba(201,168,76,.09);border-left:2px solid var(--gold);}
+    .som-msg.bot{background:rgba(255,255,255,.04);border-left:2px solid rgba(255,255,255,.12);}
+    .som-thinking{color:var(--gold);font-style:italic;font-size:.8rem;}
+    .som-input-row{display:flex;gap:8px;}
+    #som-input{flex:1;background:rgba(255,255,255,.05);border:1px solid rgba(201,168,76,.2);color:var(--cream);padding:11px 14px;font-size:.87rem;font-family:'Inter',sans-serif;border-radius:2px;outline:none;transition:border-color .2s;}
+    #som-input:focus{border-color:var(--gold);}
+    #som-send{background:var(--gold);color:var(--obsidian);border:none;padding:11px 18px;cursor:pointer;font-size:.78rem;font-family:'Inter',sans-serif;letter-spacing:.1em;transition:background .2s;}
+    #som-send:hover{background:var(--gold-light);}
+
+    /* ── CART TOAST ── */
+    #cart-toast{
+      position:fixed;bottom:28px;right:28px;z-index:3000;
+      background:var(--dark3);border:1px solid rgba(201,168,76,.25);
+      padding:20px 22px;border-radius:4px;max-width:340px;min-width:280px;
+      transform:translateY(110px);opacity:0;transition:all .4s cubic-bezier(.175,.885,.32,1.275);
+      pointer-events:none;
+    }
+    #cart-toast.show{transform:translateY(0);opacity:1;pointer-events:all;}
+    .toast-hdr{display:flex;align-items:center;gap:7px;margin-bottom:6px;}
+    .toast-chk{color:#66bb6a;font-size:.95rem;}
+    .toast-hdr-text{font-size:.8rem;font-weight:500;letter-spacing:.04em;}
+    .toast-wine{font-family:'Cormorant Garamond',serif;font-size:1.1rem;color:var(--gold);margin-bottom:12px;}
+    .toast-rec-lbl{font-size:.65rem;letter-spacing:.22em;text-transform:uppercase;color:var(--text-dim);margin-bottom:7px;}
+    .toast-rec{display:flex;align-items:center;gap:9px;padding:7px 8px;background:rgba(255,255,255,.04);border-radius:2px;margin-bottom:5px;cursor:pointer;transition:background .2s;border:1px solid transparent;}
+    .toast-rec:hover{background:rgba(201,168,76,.07);border-color:rgba(201,168,76,.18);}
+    .toast-rec img{width:34px;height:34px;object-fit:cover;border-radius:2px;}
+    .toast-rec-name{font-size:.8rem;flex:1;}
+    .toast-rec-add{font-size:.68rem;color:var(--gold);white-space:nowrap;}
+    .toast-btns{display:flex;gap:8px;margin-top:11px;}
+    .toast-btn{flex:1;padding:7px;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;border-radius:2px;}
+    .toast-pri{background:var(--gold);color:var(--obsidian);border:none;}
+    .toast-pri:hover{background:var(--gold-light);}
+    .toast-sec{background:none;border:1px solid rgba(201,168,76,.3);color:var(--gold);}
+    .toast-sec:hover{border-color:var(--gold);}
+
+    /* ── CART PANEL ── */
+    #cart-overlay{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:4000;opacity:0;pointer-events:none;transition:opacity .35s;}
+    #cart-overlay.open{opacity:1;pointer-events:all;}
+    #cart-panel{position:fixed;top:0;right:0;width:420px;max-width:92vw;height:100vh;background:var(--dark2);z-index:4001;transform:translateX(100%);transition:transform .4s cubic-bezier(.25,.46,.45,.94);display:flex;flex-direction:column;border-left:1px solid rgba(201,168,76,.15);}
+    #cart-panel.open{transform:translateX(0);}
+    .cpanel-hdr{display:flex;align-items:center;justify-content:space-between;padding:22px 24px 18px;border-bottom:1px solid rgba(201,168,76,.12);}
+    .cpanel-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--cream);display:flex;align-items:center;gap:10px;}
+    .cpanel-title span{font-size:.7rem;background:var(--gold);color:var(--obsidian);padding:2px 9px;border-radius:12px;font-family:'Inter',sans-serif;font-weight:600;}
+    .cpanel-close{background:none;border:none;color:var(--text-dim);font-size:1.3rem;cursor:pointer;padding:6px;transition:color .2s;}
+    .cpanel-close:hover{color:var(--cream);}
+    .cpanel-items{flex:1;overflow-y:auto;padding:16px 24px;}
+    .cpanel-items::-webkit-scrollbar{width:4px;}
+    .cpanel-items::-webkit-scrollbar-thumb{background:rgba(201,168,76,.2);border-radius:4px;}
+    .citem{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid rgba(245,237,216,.06);animation:citemIn .35s ease;}
+    @keyframes citemIn{from{opacity:0;transform:translateX(20px);}to{opacity:1;transform:translateX(0);}}
+    .citem-img{width:64px;height:64px;border-radius:4px;object-fit:cover;background:var(--dark3);flex-shrink:0;}
+    .citem-info{flex:1;display:flex;flex-direction:column;gap:4px;}
+    .citem-name{font-family:'Cormorant Garamond',serif;font-size:1rem;color:var(--cream);}
+    .citem-price{font-size:.78rem;color:var(--gold);}
+    .citem-qty{display:flex;align-items:center;gap:0;margin-top:4px;}
+    .citem-qty button{width:28px;height:28px;background:var(--dark3);border:1px solid rgba(245,237,216,.1);color:var(--cream);font-size:.85rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+    .citem-qty button:hover{border-color:var(--gold);color:var(--gold);}
+    .citem-qty span{width:32px;text-align:center;font-size:.82rem;color:var(--cream);}
+    .citem-remove{background:none;border:none;color:rgba(245,237,216,.2);font-size:1.1rem;cursor:pointer;align-self:flex-start;padding:2px 4px;transition:color .2s;}
+    .citem-remove:hover{color:#e57373;}
+    .cpanel-empty{text-align:center;padding:60px 20px;}
+    .cpanel-empty-icon{font-size:3rem;margin-bottom:16px;opacity:.3;}
+    .cpanel-empty-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--text-dim);margin-bottom:8px;}
+    .cpanel-empty-sub{font-size:.78rem;color:var(--muted);}
+    .cpanel-footer{padding:20px 24px;border-top:1px solid rgba(201,168,76,.15);background:var(--dark3);}
+    .cpanel-subtotal{display:flex;justify-content:space-between;font-size:.8rem;color:var(--text-dim);margin-bottom:6px;}
+    .cpanel-total{display:flex;justify-content:space-between;font-family:'Cormorant Garamond',serif;font-size:1.35rem;color:var(--cream);margin-bottom:18px;padding-top:10px;border-top:1px solid rgba(201,168,76,.12);}
+    .cpanel-total .cpanel-total-price{color:var(--gold);}
+    .cpanel-wa{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;background:#25D366;color:#fff;border:none;border-radius:4px;font-size:.85rem;font-weight:600;letter-spacing:.04em;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;}
+    .cpanel-wa:hover{background:#1da851;transform:translateY(-1px);box-shadow:0 6px 20px rgba(37,211,102,.3);}
+    .cpanel-wa svg{width:20px;height:20px;}
+    .cpanel-continue{display:block;width:100%;text-align:center;margin-top:10px;background:none;border:1px solid rgba(201,168,76,.25);color:var(--gold);padding:10px;border-radius:4px;font-size:.75rem;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:'Inter',sans-serif;transition:all .2s;}
+    .cpanel-continue:hover{border-color:var(--gold);background:rgba(201,168,76,.06);}
+
+    /* ── FOOTER ── */
+    footer{background:var(--dark2);border-top:1px solid rgba(201,168,76,.1);padding:60px 48px 36px;}
+    .footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto 48px;}
+    .footer-logo{display:flex;align-items:center;gap:9px;margin-bottom:14px;}
+    .footer-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.3rem;color:var(--cream);letter-spacing:.08em;}
+    .footer-logo-text sup{font-size:.55em;color:var(--gold);vertical-align:super;}
+    .footer-tagline{color:var(--text-dim);font-size:.83rem;line-height:1.8;max-width:280px;}
+    .footer-col-title{font-size:.65rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:9px;}
+    .footer-links a{color:var(--text-dim);text-decoration:none;font-size:.83rem;transition:color .2s;}
+    .footer-links a:hover{color:var(--cream);}
+    .footer-bottom{border-top:1px solid rgba(201,168,76,.1);padding-top:22px;max-width:1200px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;}
+    .footer-copy{color:rgba(245,237,216,.25);font-size:.73rem;}
+    .footer-legal{display:flex;gap:20px;}
+    .footer-legal a{color:rgba(245,237,216,.25);text-decoration:none;font-size:.73rem;transition:color .2s;}
+    .footer-legal a:hover{color:var(--text-dim);}
+
+    /* ── PRODUCT CARDS ── */
+    .pf-tabs{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:32px;}
+    .pf-tab{background:none;border:1px solid rgba(245,237,216,.18);color:var(--text-dim);padding:8px 22px;border-radius:30px;cursor:pointer;font-size:.76rem;letter-spacing:.1em;font-family:'Inter',sans-serif;transition:all .25s;}
+    .pf-tab:hover{border-color:var(--gold);color:var(--cream);}
+    .pf-tab.active{background:var(--gold);color:var(--obsidian);border-color:var(--gold);font-weight:500;}
+    .prod-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;max-width:1200px;margin:0 auto;padding:0 4px;}
+    .prod-card{background:var(--dark3);border:1px solid rgba(245,237,216,.06);border-radius:4px;overflow:hidden;transition:transform .3s,border-color .3s,box-shadow .3s;cursor:pointer;}
+    .prod-card:hover{transform:translateY(-6px);border-color:rgba(201,168,76,.25);box-shadow:0 18px 48px rgba(0,0,0,.5);}
+    .prod-img-wrap{position:relative;aspect-ratio:4/3;overflow:hidden;background:var(--dark2);}
+    .prod-img-wrap img{width:100%;height:100%;object-fit:cover;transition:transform .5s;}
+    .prod-card:hover .prod-img-wrap img{transform:scale(1.06);}
+    .prod-badge{position:absolute;top:10px;left:10px;font-size:.6rem;letter-spacing:.13em;padding:3px 9px;border-radius:20px;text-transform:uppercase;font-weight:600;}
+    .prod-body{padding:18px 18px 16px;}
+    .prod-origin{font-size:.62rem;letter-spacing:.15em;color:var(--text-dim);text-transform:uppercase;margin-bottom:6px;}
+    .prod-name{font-family:'Cormorant Garamond',serif;font-size:1.15rem;font-weight:400;margin-bottom:5px;color:var(--cream);}
+    .prod-stars{color:var(--gold);font-size:.8rem;margin-bottom:8px;}
+    .prod-stars span{color:var(--text-dim);font-size:.72rem;}
+    .prod-desc{color:var(--muted);font-size:.78rem;line-height:1.65;margin-bottom:14px;min-height:54px;}
+    .prod-footer{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(245,237,216,.07);padding-top:13px;}
+    .prod-price{font-family:'Cormorant Garamond',serif;font-size:1.25rem;color:var(--gold);font-weight:400;}
+    .prod-add{background:var(--gold);color:var(--obsidian);border:none;width:32px;height:32px;border-radius:50%;font-size:1.2rem;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;}
+    .prod-add:hover{background:var(--gold-light);transform:scale(1.12);}
+    .prod-card.hidden{display:none;}
+
+    @media(max-width:1100px){.prod-grid{grid-template-columns:repeat(3,1fr);}}
+    @media(max-width:768px){
+      nav{padding:14px 20px;}
+      .nav-links{display:none;}
+      section{padding:60px 20px;}
+      .trust-inner{grid-template-columns:1fr 1fr;}
+      .carousel-slide{flex-direction:column;}
+      .slide-img{width:100%;padding:28px;}
+      .slide-info{padding:28px 20px;}
+      .experiences-grid{grid-template-columns:1fr;}
+      .footer-grid{grid-template-columns:1fr;gap:28px;}
+      footer{padding:48px 20px 28px;}
+      .prod-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
+    }
+    @media(max-width:480px){.prod-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav id="main-nav">
+  <a href="#" class="nav-logo">
+    <span class="nav-logo-icon">
+      <svg viewBox="0 0 26 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="13" cy="18" r="5.5" fill="#C9A84C"/>
+        <circle cx="6"  cy="12" r="5"   fill="#C9A84C"/>
+        <circle cx="20" cy="12" r="5"   fill="#C9A84C"/>
+        <circle cx="13" cy="6"  r="4.5" fill="#C9A84C"/>
+        <line x1="13" y1="23" x2="13" y2="30" stroke="#C9A84C" stroke-width="1.5"/>
+        <line x1="10" y1="28" x2="16" y2="28" stroke="#C9A84C" stroke-width="1.5"/>
+      </svg>
+    </span>
+    <span class="nav-logo-text">Vinoris<sup>®</sup></span>
+  </a>
+  <div class="nav-links">
+    <a href="#vinos" data-es="Orígenes" data-en="Origins">Orígenes</a>
+    <a href="#productos" data-es="Productos" data-en="Products">Productos</a>
+    <a href="#experiencias" data-es="Experiencias" data-en="Experiences">Experiencias</a>
+    <a href="#footer" data-es="Club" data-en="Club">Club</a>
+  </div>
+  <div class="nav-right">
+    <button id="lang-btn" onclick="toggleLang()">EN</button>
+    <button class="btn-sommelier" onclick="openSommelier()" data-es="Sommelier IA" data-en="Sommelier AI">Sommelier IA</button>
+    <button class="cart-btn" id="cart-toggle" aria-label="Carrito" onclick="openCart()">
+      🛒 <span class="cart-count" id="cart-count">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ── HERO ── -->
+<section id="hero">
+  <svg class="hero-wm" viewBox="0 0 300 300" fill="none">
+    <circle cx="150" cy="180" r="55" fill="white"/>
+    <circle cx="90"  cy="130" r="50" fill="white"/>
+    <circle cx="210" cy="130" r="50" fill="white"/>
+    <circle cx="150" cy="75"  r="45" fill="white"/>
+    <circle cx="90"  cy="50"  r="35" fill="white" opacity=".6"/>
+    <circle cx="210" cy="50"  r="35" fill="white" opacity=".6"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">🚚 <span data-es="48h Entrega en GAM" data-en="48h Delivery in GAM">48h Entrega en GAM</span></div>
+    <h1 class="hero-title" data-es="Sabores del Mundo,<br><em>en Tu Mesa</em>" data-en="Flavors of the World,<br><em>at Your Table</em>">Sabores del Mundo,<br><em>en Tu Mesa</em></h1>
+    <p class="hero-sub" data-es="Selección exclusiva de vinos de Ribera del Duero y denominaciones de origen premiadas, entregados en Costa Rica con cadena de frío garantizada." data-en="Exclusive selection of Ribera del Duero wines and award-winning denominations, delivered in Costa Rica with guaranteed cold chain.">Selección exclusiva de vinos de Ribera del Duero y denominaciones de origen premiadas, entregados en Costa Rica con cadena de frío garantizada.</p>
+    <a href="#vinos" class="hero-cta" data-es="Explorar Colección" data-en="Explore Collection">Explorar Colección</a>
+  </div>
+</section>
+
+<!-- ── TRUST BAR ── -->
+<div class="trust-bar">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <span class="trust-icon">❄️</span>
+      <div class="trust-text">
+        <strong data-es="Cadena de Frío" data-en="Cold Chain">Cadena de Frío</strong>
+        <span data-es="Garantía completa de origen a destino" data-en="Full guarantee from origin to destination">Garantía completa de origen a destino</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">✈️</span>
+      <div class="trust-text">
+        <strong data-es="Importación Directa" data-en="Direct Import">Importación Directa</strong>
+        <span data-es="Sin intermediarios, precios justos" data-en="No middlemen, fair prices">Sin intermediarios, precios justos</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">📋</span>
+      <div class="trust-text">
+        <strong data-es="Certificado de Origen" data-en="Certificate of Origin">Certificado de Origen</strong>
+        <span data-es="Trazabilidad 100% verificable" data-en="100% verifiable traceability">Trazabilidad 100% verificable</span>
+      </div>
+    </div>
+    <div class="trust-item">
+      <span class="trust-icon">🚚</span>
+      <div class="trust-text">
+        <strong data-es="Envío en 48h" data-en="Delivery in 48h">Envío en 48h</strong>
+        <span data-es="GAM y principales ciudades" data-en="GAM and main cities">GAM y principales ciudades</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── MARQUEE ── -->
+<div class="marquee-strip">
+  <div class="marquee-track">
+    <span>Ribera del Duero</span><span class="marquee-sep">🍇</span>
+    <span>Selección Exclusiva</span><span class="marquee-sep">🍇</span>
+    <span>Costa Rica</span><span class="marquee-sep">🍇</span>
+    <span>Denominación de Origen</span><span class="marquee-sep">🍇</span>
+    <span>Experiencias Únicas</span><span class="marquee-sep">🍇</span>
+    <span>Envío a Domicilio</span><span class="marquee-sep">🍇</span>
+    <span>Ribera del Duero</span><span class="marquee-sep">🍇</span>
+    <span>Selección Exclusiva</span><span class="marquee-sep">🍇</span>
+    <span>Costa Rica</span><span class="marquee-sep">🍇</span>
+    <span>Denominación de Origen</span><span class="marquee-sep">🍇</span>
+    <span>Experiencias Únicas</span><span class="marquee-sep">🍇</span>
+    <span>Envío a Domicilio</span><span class="marquee-sep">🍇</span>
+  </div>
+</div>
+
+<!-- ── WINES ── -->
+<section id="vinos">
+  <div style="text-align:center;margin-bottom:48px;">
+    <p class="section-label" data-es="Nuestra Colección" data-en="Our Collection">Nuestra Colección</p>
+    <h2 class="section-title" data-es="Vinos de Denominación de Origen" data-en="Denomination of Origin Wines">Vinos de Denominación de Origen</h2>
+    <p class="section-sub" data-es="Cada botella cuenta la historia de su tierra, su clima y las manos que la crearon." data-en="Each bottle tells the story of its land, its climate and the hands that created it.">Cada botella cuenta la historia de su tierra, su clima y las manos que la crearon.</p>
+  </div>
+  <div class="carousel-wrapper">
+    <div class="carousel-track" id="car-track">
+
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="assets/images/botella-celia.png" alt="Celia Vizcarra"/></div>
+        <div class="slide-info">
+          <p class="slide-do">D.O. Ribera del Duero</p>
+          <h3 class="slide-name">Celia Vizcarra</h3>
+          <p class="slide-desc">Viñas de 70 años. 93% Tinto Fino y 7% Garnacha. 18 meses en roble francés. Taninos aterciopelados, frutos rojos elegantes y un final que permanece.</p>
+          <div class="slide-tags"><span class="slide-tag">Tinto Fino 93%</span><span class="slide-tag">18 meses roble</span><span class="slide-tag">Viñas 70 años</span></div>
+          <div class="slide-actions">
+            <button class="btn-discover" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-cart" onclick="addToCart('Celia Vizcarra','celia')" data-es="Agregar" data-en="Add">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="assets/images/botella-merlot.png" alt="Vizcarra Merlot"/></div>
+        <div class="slide-info">
+          <p class="slide-do">D.O. Ribera del Duero</p>
+          <h3 class="slide-name">Vizcarra Merlot</h3>
+          <p class="slide-desc">100% Merlot. 24 meses en roble francés. Estilo Pomerol. Ciruela negra madura, chocolate amargo y una estructura sedosa de larga crianza.</p>
+          <div class="slide-tags"><span class="slide-tag">100% Merlot</span><span class="slide-tag">24 meses roble</span><span class="slide-tag">Estilo Pomerol</span></div>
+          <div class="slide-actions">
+            <button class="btn-discover" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-cart" onclick="addToCart('Vizcarra Merlot','merlot')" data-es="Agregar" data-en="Add">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="assets/images/botella-senda.png" alt="Senda del Oro"/></div>
+        <div class="slide-info">
+          <p class="slide-do">D.O. Ribera del Duero</p>
+          <h3 class="slide-name">Senda del Oro</h3>
+          <p class="slide-desc">100% Tinto Fino. 6 meses en barrica. Frambuesa, fresa y cereza fresca. El vino de entrada perfecta al universo de Ribera del Duero.</p>
+          <div class="slide-tags"><span class="slide-tag">100% Tinto Fino</span><span class="slide-tag">6 meses barrica</span><span class="slide-tag">Frutos rojos</span></div>
+          <div class="slide-actions">
+            <button class="btn-discover" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-cart" onclick="addToCart('Senda del Oro','senda')" data-es="Agregar" data-en="Add">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="assets/images/botella-torralvo.png" alt="Torralvo"/></div>
+        <div class="slide-info">
+          <p class="slide-do">D.O. Ribera del Duero</p>
+          <h3 class="slide-name">Torralvo</h3>
+          <p class="slide-desc">Viñedos de 60 años. 18 meses en roble. Fruta negra intensa, mineralidad y especias. El alma de la meseta castellana con elegancia y poder.</p>
+          <div class="slide-tags"><span class="slide-tag">Viñedos 60 años</span><span class="slide-tag">18 meses roble</span><span class="slide-tag">Gran potencial</span></div>
+          <div class="slide-actions">
+            <button class="btn-discover" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-cart" onclick="addToCart('Torralvo','torralvo')" data-es="Agregar" data-en="Add">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="carousel-slide">
+        <div class="slide-img"><img src="assets/images/botella-vizcarra15.png" alt="Vizcarra 15 Meses"/></div>
+        <div class="slide-info">
+          <p class="slide-do">D.O. Ribera del Duero</p>
+          <h3 class="slide-name">Vizcarra 15 Meses</h3>
+          <p class="slide-desc">100% Tinto Fino de viñas con más de 30 años. 15 meses en barrica. El equilibrio perfecto entre potencia y finura. Un clásico que nunca decepciona.</p>
+          <div class="slide-tags"><span class="slide-tag">100% Tinto Fino</span><span class="slide-tag">+30 años viña</span><span class="slide-tag">15 meses barrica</span></div>
+          <div class="slide-actions">
+            <button class="btn-discover" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-cart" onclick="addToCart('Vizcarra 15 Meses','vizcarra15')" data-es="Agregar" data-en="Add">Agregar</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Clone for infinite loop -->
+      <div class="carousel-slide" aria-hidden="true">
+        <div class="slide-img"><img src="assets/images/botella-celia.png" alt="Celia Vizcarra"/></div>
+        <div class="slide-info">
+          <p class="slide-do">D.O. Ribera del Duero</p>
+          <h3 class="slide-name">Celia Vizcarra</h3>
+          <p class="slide-desc">Viñas de 70 años. 93% Tinto Fino y 7% Garnacha. 18 meses en roble francés. Taninos aterciopelados, frutos rojos elegantes y un final que permanece.</p>
+          <div class="slide-tags"><span class="slide-tag">Tinto Fino 93%</span><span class="slide-tag">18 meses roble</span></div>
+          <div class="slide-actions">
+            <button class="btn-discover">Descubrir</button>
+            <button class="btn-cart" onclick="addToCart('Celia Vizcarra','celia')">Agregar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="carousel-nav">
+      <div class="carousel-dots" id="car-dots">
+        <button class="dot active" onclick="goTo(0)"></button>
+        <button class="dot" onclick="goTo(1)"></button>
+        <button class="dot" onclick="goTo(2)"></button>
+        <button class="dot" onclick="goTo(3)"></button>
+        <button class="dot" onclick="goTo(4)"></button>
+      </div>
+      <div class="carousel-arrows">
+        <button class="arrow-btn" onclick="prevSlide()">←</button>
+        <button class="arrow-btn" onclick="nextSlide()">→</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PRODUCTOS SELECCIONADOS ── -->
+<section id="productos" style="background:var(--obsidian);">
+  <div style="text-align:center;margin-bottom:48px;">
+    <p class="section-label" data-es="Colección" data-en="Collection">Colección</p>
+    <h2 class="section-title" data-es="Productos Seleccionados" data-en="Selected Products">Productos Seleccionados</h2>
+    <p class="section-sub" data-es="Curados por expertos. Solo lo mejor de cada región llega a tu mesa." data-en="Curated by experts. Only the best from each region arrives at your table.">Curados por expertos. Solo lo mejor de cada región llega a tu mesa.</p>
+    <!-- FILTER TABS -->
+    <div class="pf-tabs">
+      <button class="pf-tab active" onclick="filterProducts('todos')" data-es="Todos" data-en="All">Todos</button>
+      <button class="pf-tab" onclick="filterProducts('vinos')" data-es="Vinos" data-en="Wines">Vinos</button>
+      <button class="pf-tab" onclick="filterProducts('carnes')" data-es="Carnes" data-en="Meats">Carnes</button>
+      <button class="pf-tab" onclick="filterProducts('quesos')" data-es="Quesos" data-en="Cheeses">Quesos</button>
+      <button class="pf-tab" onclick="filterProducts('gourmet')" data-es="Gourmet" data-en="Gourmet">Gourmet</button>
+    </div>
+  </div>
+
+  <div class="prod-grid" id="prod-grid">
+
+    <!-- ── VINOS ── -->
+    <div class="prod-card" data-cat="vinos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/botella-celia.png" alt="Celia Vizcarra"/>
+        <span class="prod-badge" style="background:#8B4513;color:#fff;">CRIANZA</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🍷 D.O. RIBERA DEL DUERO · 750ML</p>
+        <h3 class="prod-name">Celia Vizcarra</h3>
+        <div class="prod-stars">★★★★★ <span>(34)</span></div>
+        <p class="prod-desc">Viñas de 70 años. Taninos aterciopelados. Maridaje perfecto: Parmigiano Reggiano.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡42,500</span>
+          <button class="prod-add" onclick="addToCart('Celia Vizcarra','celia')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="vinos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/botella-merlot.png" alt="Vizcarra Merlot"/>
+        <span class="prod-badge" style="background:#b5451b;color:#fff;">VINO DE LA TIERRA</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🍷 VINO DE LA TIERRA · CASTILLA Y LEÓN</p>
+        <h3 class="prod-name">Vizcarra Merlot</h3>
+        <div class="prod-stars">★★★★ <span>(27)</span></div>
+        <p class="prod-desc">100% Merlot, 24 meses en roble. Estilo Pomerol. Ideal con Rib Eye.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡38,000</span>
+          <button class="prod-add" onclick="addToCart('Vizcarra Merlot','merlot')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="vinos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/botella-senda.png" alt="Senda del Oro"/>
+        <span class="prod-badge" style="background:#1a4a1a;color:#fff;">JOVEN</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🍷 D.O. RIBERA DEL DUERO · JOVEN</p>
+        <h3 class="prod-name">Senda del Oro</h3>
+        <div class="prod-stars">★★★★ <span>(89)</span></div>
+        <p class="prod-desc">Frutal, fresco y envolvente. Frambuesa y fresa. La entrada perfecta a la Ribera.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡26,000</span>
+          <button class="prod-add" onclick="addToCart('Senda del Oro','senda')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="vinos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/botella-torralvo.png" alt="Torralvo"/>
+        <span class="prod-badge" style="background:#8B4513;color:#fff;">CRIANZA</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🍷 D.O. RIBERA DEL DUERO · CRIANZA</p>
+        <h3 class="prod-name">Torralvo</h3>
+        <div class="prod-stars">★★★★★ <span>(112)</span></div>
+        <p class="prod-desc">Viñedos de 60 años. Potente. Mineral. El maridaje natural del New York steak.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡44,000</span>
+          <button class="prod-add" onclick="addToCart('Torralvo','torralvo')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="vinos" style="position:relative;">
+      <div class="prod-img-wrap">
+        <img src="assets/images/botella-vizcarra15.png" alt="Vizcarra 15 Meses"/>
+        <span class="prod-badge" style="background:var(--gold);color:var(--obsidian);">PREMIUM</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🍷 D.O. RIBERA DEL DUERO · CRIANZA</p>
+        <h3 class="prod-name">Vizcarra 15 Meses</h3>
+        <div class="prod-stars">★★★★★ <span>(204)</span></div>
+        <p class="prod-desc">La esencia de la Ribera del Duero. Estructura carnosa y equilibrio perfecto. Para el Lomito.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡48,500</span>
+          <button class="prod-add" onclick="addToCart('Vizcarra 15 Meses','vizcarra15')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CARNES ── -->
+    <div class="prod-card" data-cat="carnes">
+      <div class="prod-img-wrap">
+        <img src="assets/images/carne-ribeye.png" alt="Rib Eye"/>
+        <span class="prod-badge" style="background:#8B1A1A;color:#fff;">PREMIUM</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🥩 CORTE PREMIUM · PRECIO/KG</p>
+        <h3 class="prod-name">Rib Eye</h3>
+        <div class="prod-stars">★★★★★ <span>(143)</span></div>
+        <p class="prod-desc">El corte más marmoleado. Mantequilla de hierbas, fuego y sabor intenso. Maridaje: Vizcarra Merlot.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡28,000/kg</span>
+          <button class="prod-add" onclick="addToCart('Rib Eye','ribeye')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carnes">
+      <div class="prod-img-wrap">
+        <img src="assets/images/carne-newyork.png" alt="New York"/>
+        <span class="prod-badge" style="background:#5a3000;color:#fff;">CLÁSICO</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🥩 CORTE PREMIUM · PRECIO/KG</p>
+        <h3 class="prod-name">New York</h3>
+        <div class="prod-stars">★★★★★ <span>(98)</span></div>
+        <p class="prod-desc">Firme, textura perfecta y costra intensa. Sal gruesa y pimienta. Maridaje ideal: Torralvo.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡24,000/kg</span>
+          <button class="prod-add" onclick="addToCart('New York Steak','newyork')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="carnes">
+      <div class="prod-img-wrap">
+        <img src="assets/images/carne-lomito.png" alt="Lomito"/>
+        <span class="prod-badge" style="background:#0a3d2e;color:#fff;">EXCLUSIVO</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🥩 CORTE FINO · PRECIO/KG</p>
+        <h3 class="prod-name">Lomito</h3>
+        <div class="prod-stars">★★★★★ <span>(76)</span></div>
+        <p class="prod-desc">La elegancia del filete. Tierno, rosado y sedoso con reducción de vino tinto. Maridaje: Vizcarra 15 Meses.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡32,000/kg</span>
+          <button class="prod-add" onclick="addToCart('Lomito','lomito')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── QUESOS ── -->
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-gorgonzola.png" alt="Queso Gorgonzola"/>
+        <span class="prod-badge" style="background:#163d16;color:#fff;">D.O.P.</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇮🇹 LOMBARDÍA, ITALIA · PRECIO/KG</p>
+        <h3 class="prod-name">Queso Gorgonzola</h3>
+        <div class="prod-stars">★★★★★ <span>(61)</span></div>
+        <p class="prod-desc">Cremoso y audaz. Venas azules intensas, miel y nuez. Maridaje ideal: Vizcarra Merlot.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡18,500/kg</span>
+          <button class="prod-add" onclick="addToCart('Queso Gorgonzola','gorgonzola')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-pecorino-romano.png" alt="Pecorino Romano"/>
+        <span class="prod-badge" style="background:#163d16;color:#fff;">D.O.P.</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇮🇹 LACIO, ITALIA · PRECIO/KG</p>
+        <h3 class="prod-name">Pecorino Romano</h3>
+        <div class="prod-stars">★★★★★ <span>(48)</span></div>
+        <p class="prod-desc">Sabor potente y salado. Leche de oveja, 8+ meses de crianza. Maridaje: Torralvo.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡14,000/kg</span>
+          <button class="prod-add" onclick="addToCart('Pecorino Romano','pecorino-romano')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-pecorino-sardo.png" alt="Pecorino Sardo"/>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇮🇹 CERDEÑA, ITALIA · PRECIO/KG</p>
+        <h3 class="prod-name">Pecorino Sardo</h3>
+        <div class="prod-stars">★★★☆☆ <span>(39)</span></div>
+        <p class="prod-desc">Semiduro, mediterráneo, ligero y herbáceo. Maridaje natural: Senda del Oro.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡15,500/kg</span>
+          <button class="prod-add" onclick="addToCart('Pecorino Sardo','pecorino-sardo')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-feta.png" alt="Queso Feta"/>
+        <span class="prod-badge" style="background:#4a90d9;color:#fff;">FRESCO</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇬🇷 GRECIA · PRECIO/KG</p>
+        <h3 class="prod-name">Queso Feta</h3>
+        <div class="prod-stars">★★★★☆ <span>(82)</span></div>
+        <p class="prod-desc">Fresco, firme y salino. Con aceitunas kalamata y tomate. Maridaje: Senda del Oro.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡12,000/kg</span>
+          <button class="prod-add" onclick="addToCart('Queso Feta','feta')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-parmigiano.png" alt="Parmigiano Reggiano"/>
+        <span class="prod-badge" style="background:#163d16;color:#fff;">D.O.P.</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇮🇹 EMILIA-ROMAÑA · PRECIO/KG</p>
+        <h3 class="prod-name">Parmigiano Reggiano</h3>
+        <div class="prod-stars">★★★★★ <span>(127)</span></div>
+        <p class="prod-desc">El rey de los quesos. Cristales de tirosina, miel y nuez. Maridaje perfecto: Celia Vizcarra.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡22,000/kg</span>
+          <button class="prod-add" onclick="addToCart('Parmigiano Reggiano','parmigiano')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-mozzarella.png" alt="Mozzarella"/>
+        <span class="prod-badge" style="background:#4a90d9;color:#fff;">FRESCO</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇮🇹 CAMPANIA, ITALIA · PRECIO/KG</p>
+        <h3 class="prod-name">Mozzarella</h3>
+        <div class="prod-stars">★★★★★ <span>(94)</span></div>
+        <p class="prod-desc">Suave, elástica y láctea. Con aceite de oliva y albahaca. Maridaje: Senda del Oro.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡11,500/kg</span>
+          <button class="prod-add" onclick="addToCart('Mozzarella','mozzarella')">+</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod-card" data-cat="quesos">
+      <div class="prod-img-wrap">
+        <img src="assets/images/queso-burrata.png" alt="Burrata"/>
+        <span class="prod-badge" style="background:#8B1A1A;color:#fff;">PREMIUM</span>
+      </div>
+      <div class="prod-body">
+        <p class="prod-origin">🇮🇹 PUGLIA, ITALIA · PRECIO/KG</p>
+        <h3 class="prod-name">Burrata</h3>
+        <div class="prod-stars">★★★★★ <span>(108)</span></div>
+        <p class="prod-desc">Interior de stracciatella fluyente, delicada y seductora. Maridaje: Vizcarra 15 Meses.</p>
+        <div class="prod-footer">
+          <span class="prod-price">₡16,000/kg</span>
+          <button class="prod-add" onclick="addToCart('Burrata','burrata')">+</button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /prod-grid -->
+</section>
+
+<!-- ── EXPERIENCES ── -->
+
+<section id="experiencias">
+  <div style="text-align:center;margin-bottom:48px;">
+    <p class="section-label" data-es="Experiencias" data-en="Experiences">Experiencias</p>
+    <h2 class="section-title" data-es="Más Allá del Producto" data-en="Beyond the Product">Más Allá del Producto</h2>
+    <p class="section-sub" data-es="Vivencias que crean recuerdos. Cenas privadas, tours y talleres exclusivos para miembros." data-en="Experiences that create memories. Private dinners, tours and exclusive workshops for members.">Vivencias que crean recuerdos. Cenas privadas, tours y talleres exclusivos para miembros.</p>
+  </div>
+  <div class="experiences-grid">
+    <div class="exp-card">
+      <img src="assets/images/mood-celebracion.png" alt="Cena Maridaje 5 Países" onerror="this.style.display='none';this.parentElement.style.background='var(--dark3)'"/>
+      <div class="exp-card-content">
+        <span class="exp-badge" data-es="Próximo Evento" data-en="Next Event">Próximo Evento</span>
+        <h3 class="exp-title" data-es="Cena Maridaje 5 Países" data-en="5 Countries Pairing Dinner">Cena Maridaje 5 Países</h3>
+        <p class="exp-sub" data-es="5 platos de chefs internacionales, cada uno con su producto estrella." data-en="5 dishes from international chefs, each with its star product.">5 platos de chefs internacionales, cada uno con su producto estrella.</p>
+      </div>
+    </div>
+    <div class="exp-card">
+      <img src="assets/images/mood-amigos.png" alt="Masterclass de Corte Wagyu" onerror="this.style.display='none';this.parentElement.style.background='var(--dark3)'"/>
+      <div class="exp-card-content">
+        <span class="exp-badge" data-es="Taller" data-en="Workshop">Taller</span>
+        <h3 class="exp-title" data-es="Masterclass de Corte Wagyu" data-en="Wagyu Cutting Masterclass">Masterclass de Corte Wagyu</h3>
+        <p class="exp-sub" data-es="Aprende las técnicas de corte japonés con maestros certificados." data-en="Learn Japanese cutting techniques with certified masters.">Aprende las técnicas de corte japonés con maestros certificados.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── SOMMELIER MODAL ── -->
+<div id="sommelier-modal" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeSommelier()">✕</button>
+    <div class="modal-grape-icon">🍇</div>
+    <p class="modal-brand">Sommelier · Vinoris</p>
+    <h2 class="modal-title" data-es="Tu Sommelier Personal" data-en="Your Personal Sommelier">Tu Sommelier Personal</h2>
+    <p class="modal-lead" data-es="Cuéntame la ocasión, tus sabores favoritos o con qué maridará el vino. Te recomendaré la botella perfecta." data-en="Tell me about the occasion, your flavors or what you'll pair with. I'll recommend the perfect bottle.">Cuéntame la ocasión, tus sabores favoritos o con qué maridará el vino. Te recomendaré la botella perfecta.</p>
+    <div class="som-messages" id="som-messages"></div>
+    <div class="som-input-row">
+      <input type="text" id="som-input" placeholder="Ej: una cena romántica con carne asada..." onkeypress="if(event.key==='Enter')sendSom()"/>
+      <button id="som-send" onclick="sendSom()" data-es="Enviar" data-en="Send">Enviar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── CART TOAST ── -->
+<div id="cart-toast">
+  <div class="toast-hdr">
+    <span class="toast-chk">✓</span>
+    <span class="toast-hdr-text" data-es="Agregado al carrito" data-en="Added to cart">Agregado al carrito</span>
+  </div>
+  <div class="toast-wine" id="toast-wine"></div>
+  <div class="toast-rec-lbl" data-es="Maridaje recomendado" data-en="Recommended pairing">Maridaje recomendado</div>
+  <div id="toast-recs"></div>
+  <div class="toast-btns">
+    <button class="toast-btn toast-sec" onclick="hideToast()" data-es="Seguir explorando" data-en="Keep exploring">Seguir explorando</button>
+    <button class="toast-btn toast-pri" onclick="hideToast();openCart()" data-es="Ver carrito" data-en="View cart">Ver carrito</button>
+  </div>
+</div>
+
+<!-- ── CART PANEL ── -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+<div id="cart-panel">
+  <div class="cpanel-hdr">
+    <div class="cpanel-title" data-es="Tu Carrito" data-en="Your Cart">Tu Carrito <span id="cpanel-badge">0</span></div>
+    <button class="cpanel-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cpanel-items" id="cpanel-items"></div>
+  <div class="cpanel-footer" id="cpanel-footer" style="display:none;">
+    <div class="cpanel-subtotal"><span data-es="Subtotal" data-en="Subtotal">Subtotal</span><span id="cpanel-subtotal">₡0</span></div>
+    <div class="cpanel-subtotal"><span data-es="Envío GAM" data-en="GAM Shipping">Envío GAM</span><span style="color:#66bb6a;" data-es="Gratis" data-en="Free">Gratis</span></div>
+    <div class="cpanel-total"><span>Total</span><span class="cpanel-total-price" id="cpanel-total">₡0</span></div>
+    <button class="cpanel-wa" onclick="checkoutWhatsApp()">
+      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.611.611l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.594-.826-6.336-2.208l-.442-.348-3.09 1.035 1.035-3.09-.348-.442A9.956 9.956 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      <span data-es="Ordenar por WhatsApp" data-en="Order via WhatsApp">Ordenar por WhatsApp</span>
+    </button>
+    <button class="cpanel-continue" onclick="closeCart()" data-es="Seguir Explorando" data-en="Keep Exploring">Seguir Explorando</button>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer id="footer">
+  <div class="footer-grid">
+    <div>
+      <div class="footer-logo">
+        <svg width="20" height="24" viewBox="0 0 26 30" fill="none">
+          <circle cx="13" cy="18" r="5.5" fill="#C9A84C"/>
+          <circle cx="6"  cy="12" r="5"   fill="#C9A84C"/>
+          <circle cx="20" cy="12" r="5"   fill="#C9A84C"/>
+          <circle cx="13" cy="6"  r="4.5" fill="#C9A84C"/>
+        </svg>
+        <span class="footer-logo-text">Vinoris<sup>®</sup></span>
+      </div>
+      <p class="footer-tagline" data-es="Gastronomía de clase mundial. Nuestra exclusiva colección de productos curados, entregados en Costa Rica." data-en="World-class gastronomy. Our exclusive collection of curated products, delivered in Costa Rica.">Gastronomía de clase mundial. Nuestra exclusiva colección de productos curados, entregados en Costa Rica.</p>
+    </div>
+    <div>
+      <p class="footer-col-title" data-es="Explorar" data-en="Explore">Explorar</p>
+      <ul class="footer-links">
+        <li><a href="#vinos" data-es="Colección de Vinos" data-en="Wine Collection">Colección de Vinos</a></li>
+        <li><a href="#experiencias" data-es="Experiencias" data-en="Experiences">Experiencias</a></li>
+        <li><a href="#" data-es="Maridajes" data-en="Pairings">Maridajes</a></li>
+        <li><a href="#" data-es="Sommelier IA" data-en="Sommelier AI">Sommelier IA</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title" data-es="Club" data-en="Club">Club</p>
+      <ul class="footer-links">
+        <li><a href="#" data-es="Membresías" data-en="Memberships">Membresías</a></li>
+        <li><a href="#" data-es="Regalos Gourmet" data-en="Gourmet Gifts">Regalos Gourmet</a></li>
+        <li><a href="#" data-es="Corporativo" data-en="Corporate">Corporativo</a></li>
+        <li><a href="#" data-es="Partners HORECA" data-en="HORECA Partners">Partners HORECA</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="footer-col-title" data-es="Soporte" data-en="Support">Soporte</p>
+      <ul class="footer-links">
+        <li><a href="#" data-es="Cómo Ordenar" data-en="How to Order">Cómo Ordenar</a></li>
+        <li><a href="#" data-es="Envíos" data-en="Shipping">Envíos</a></li>
+        <li><a href="#" data-es="Devoluciones" data-en="Returns">Devoluciones</a></li>
+        <li><a href="#" data-es="Contacto" data-en="Contact">Contacto</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 Vinoris. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+    <div class="footer-legal">
+      <a href="#" data-es="Privacidad" data-en="Privacy">Privacidad</a>
+      <a href="#" data-es="Términos" data-en="Terms">Términos</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── CAROUSEL ── */
+const track = document.getElementById('car-track');
+const dots  = document.querySelectorAll('#car-dots .dot');
+const TOTAL = 5;
+let cur = 0, busy = false, timer;
+
+function goTo(i){
+  if(busy)return; cur=i;
+  track.style.transition='transform .7s cubic-bezier(.25,.46,.45,.94)';
+  track.style.transform=`translateX(-${cur*100}%)`;
+  dots.forEach((d,j)=>d.classList.toggle('active',j===cur));
+  resetAuto();
+}
+function nextSlide(){
+  if(busy)return; busy=true;
+  const nx=cur+1;
+  track.style.transition='transform .7s cubic-bezier(.25,.46,.45,.94)';
+  track.style.transform=`translateX(-${nx*100}%)`;
+  track.addEventListener('transitionend',()=>{
+    if(nx===TOTAL){track.style.transition='none';track.style.transform='translateX(0)';cur=0;}
+    else cur=nx;
+    dots.forEach((d,j)=>d.classList.toggle('active',j===cur));
+    busy=false;
+  },{once:true});
+  resetAuto();
+}
+function prevSlide(){cur===0?goTo(TOTAL-1):goTo(cur-1);}
+function resetAuto(){clearInterval(timer);timer=setInterval(nextSlide,8000);}
+resetAuto();
+
+/* ── NAV SCROLL ── */
+window.addEventListener('scroll',()=>document.getElementById('main-nav').classList.toggle('scrolled',scrollY>60));
+
+/* ── LANG ── */
+const KB = {
+  carne:      {rec:'Vizcarra 15 Meses',  why:'Sus taninos firmes y 15 meses en barrica son el compañero ideal para carnes rojas.'},
+  romántic:   {rec:'Celia Vizcarra',     why:'La elegancia de sus viñas de 70 años crea el ambiente perfecto para una velada romántica.'},
+  romantica:  {rec:'Celia Vizcarra',     why:'La elegancia de sus viñas de 70 años crea el ambiente perfecto para una velada romántica.'},
+  amigos:     {rec:'Senda del Oro',      why:'Su frescura y frutos rojos vibrantes lo hacen perfecto para compartir.'},
+  queso:      {rec:'Vizcarra Merlot',    why:'La suavidad del Merlot al estilo Pomerol se complementa a la perfección con quesos.'},
+  celebr:     {rec:'Torralvo',           why:'La profundidad de Torralvo hace que cada celebración sea memorable.'},
+  suave:      {rec:'Senda del Oro',      why:'Con solo 6 meses de barrica, es nuestro vino más accesible y fresco.'},
+  intenso:    {rec:'Torralvo',           why:'Con viñas de 60 años y 18 meses en roble, es nuestra expresión más intensa.'},
+};
+
+function toggleLang(){
+  const h=document.documentElement, en=h.lang==='en';
+  h.lang=en?'es':'en';
+  document.getElementById('lang-btn').textContent=en?'EN':'ES';
+  applyLang();
+}
+function applyLang(){
+  const lang=document.documentElement.lang||'es';
+  document.querySelectorAll('[data-es]').forEach(el=>{
+    el.innerHTML=lang==='en'&&el.dataset.en?el.dataset.en:el.dataset.es||el.innerHTML;
+  });
+}
+
+/* ── SOMMELIER ── */
+function openSommelier(){document.getElementById('sommelier-modal').classList.add('open');}
+function closeSommelier(){document.getElementById('sommelier-modal').classList.remove('open');}
+document.getElementById('sommelier-modal').addEventListener('click',function(e){if(e.target===this)closeSommelier();});
+
+function sendSom(){
+  const inp=document.getElementById('som-input'), box=document.getElementById('som-messages');
+  const txt=inp.value.trim(); if(!txt)return;
+  box.innerHTML+=`<div class="som-msg user">${txt}</div>`;
+  inp.value='';
+  const th=document.createElement('div');
+  th.className='som-msg bot som-thinking'; th.textContent='Tu sommelier está pensando...';
+  box.appendChild(th); box.scrollTop=box.scrollHeight;
+  setTimeout(()=>{
+    th.remove();
+    const lo=txt.toLowerCase(); let resp='';
+    for(const[k,v] of Object.entries(KB)){
+      if(lo.includes(k)){resp=`🍷 Te recomiendo el <strong>${v.rec}</strong>. ${v.why}`;break;}
+    }
+    if(!resp)resp='🍷 Cuéntame más: ¿una ocasión especial, algún plato en mente, o prefieres algo suave o intenso?';
+    box.innerHTML+=`<div class="som-msg bot">${resp}</div>`;
+    box.scrollTop=box.scrollHeight;
+  },1300);
+}
+
+/* ── CART ── */
+let cart=[], hideTimer;
+const productDB={
+  celia:     {name:'Celia Vizcarra',price:42500,img:'assets/images/botella-celia.png',unit:'botella'},
+  merlot:    {name:'Vizcarra Merlot',price:38000,img:'assets/images/botella-merlot.png',unit:'botella'},
+  senda:     {name:'Senda del Oro',price:26000,img:'assets/images/botella-senda.png',unit:'botella'},
+  torralvo:  {name:'Torralvo',price:44000,img:'assets/images/botella-torralvo.png',unit:'botella'},
+  vizcarra15:{name:'Vizcarra 15 Meses',price:48500,img:'assets/images/botella-vizcarra15.png',unit:'botella'},
+  ribeye:    {name:'Rib Eye',price:28000,img:'assets/images/carne-ribeye.png',unit:'kg'},
+  newyork:   {name:'New York Steak',price:24000,img:'assets/images/carne-newyork.png',unit:'kg'},
+  lomito:    {name:'Lomito',price:32000,img:'assets/images/carne-lomito.png',unit:'kg'},
+  gorgonzola:{name:'Queso Gorgonzola',price:18500,img:'assets/images/queso-gorgonzola.png',unit:'kg'},
+  'pecorino-romano':{name:'Pecorino Romano',price:14000,img:'assets/images/queso-pecorino-romano.png',unit:'kg'},
+  'pecorino-sardo':{name:'Pecorino Sardo',price:15500,img:'assets/images/queso-pecorino-sardo.png',unit:'kg'},
+  feta:      {name:'Queso Feta',price:12000,img:'assets/images/queso-feta.png',unit:'kg'},
+  parmigiano:{name:'Parmigiano Reggiano',price:22000,img:'assets/images/queso-parmigiano.png',unit:'kg'},
+  mozzarella:{name:'Mozzarella',price:11500,img:'assets/images/queso-mozzarella.png',unit:'kg'},
+  burrata:   {name:'Burrata',price:16000,img:'assets/images/queso-burrata.png',unit:'kg'},
+};
+const pairings={
+  celia:      [{n:'Lomito al vino tinto',i:'assets/images/carne-lomito.png',k:'lomito'},{n:'Parmigiano Reggiano',i:'assets/images/queso-parmigiano.png',k:'parmigiano'}],
+  merlot:     [{n:'Queso Gorgonzola',i:'assets/images/queso-gorgonzola.png',k:'gorgonzola'},{n:'New York Steak',i:'assets/images/carne-newyork.png',k:'newyork'}],
+  senda:      [{n:'Queso Burrata',i:'assets/images/queso-burrata.png',k:'burrata'},{n:'Rib Eye',i:'assets/images/carne-ribeye.png',k:'ribeye'}],
+  torralvo:   [{n:'Pecorino Romano',i:'assets/images/queso-pecorino-romano.png',k:'pecorino-romano'},{n:'Lomito',i:'assets/images/carne-lomito.png',k:'lomito'}],
+  vizcarra15: [{n:'Queso Mozzarella',i:'assets/images/queso-mozzarella.png',k:'mozzarella'},{n:'New York Steak',i:'assets/images/carne-newyork.png',k:'newyork'}],
+};
+
+function addToCart(name,key){
+  const existing=cart.find(c=>c.key===key);
+  if(existing){existing.qty++;}
+  else{
+    const p=productDB[key]||{name,price:0,img:'',unit:'ud'};
+    cart.push({key,name:p.name,price:p.price,img:p.img,unit:p.unit,qty:1});
+  }
+  updateCartUI();
+  /* Toast */
+  document.getElementById('toast-wine').textContent=name;
+  const recs=(pairings[key]||[]).map(r=>`
+    <div class="toast-rec" onclick="addToCart('${r.n}','${r.k}')">
+      <img src="${r.i}" alt="${r.n}" onerror="this.style.display='none'"/>
+      <span class="toast-rec-name">${r.n}</span>
+      <span class="toast-rec-add">+ Agregar</span>
+    </div>`).join('');
+  document.getElementById('toast-recs').innerHTML=recs;
+  document.getElementById('cart-toast').classList.add('show');
+  clearTimeout(hideTimer); hideTimer=setTimeout(hideToast,8000);
+}
+function hideToast(){document.getElementById('cart-toast').classList.remove('show');}
+
+function updateCartUI(){
+  const totalItems=cart.reduce((s,c)=>s+c.qty,0);
+  document.getElementById('cart-count').textContent=totalItems;
+  document.getElementById('cpanel-badge').textContent=totalItems;
+  const box=document.getElementById('cpanel-items');
+  const footer=document.getElementById('cpanel-footer');
+  if(cart.length===0){
+    const lang=document.documentElement.lang||'es';
+    box.innerHTML=`<div class="cpanel-empty">
+      <div class="cpanel-empty-icon">🛒</div>
+      <div class="cpanel-empty-text">${lang==='en'?'Your cart is empty':'Tu carrito está vacío'}</div>
+      <div class="cpanel-empty-sub">${lang==='en'?'Explore our collection and add products':'Explora nuestra colección y agrega productos'}</div>
+    </div>`;
+    footer.style.display='none';
+    return;
+  }
+  footer.style.display='';
+  box.innerHTML=cart.map((c,i)=>`
+    <div class="citem">
+      <img class="citem-img" src="${c.img}" alt="${c.name}" onerror="this.style.background='var(--dark3)'"/>
+      <div class="citem-info">
+        <div class="citem-name">${c.name}</div>
+        <div class="citem-price">₡${c.price.toLocaleString()}${c.unit!=='botella'?'/'+c.unit:''}</div>
+        <div class="citem-qty">
+          <button onclick="changeQty(${i},-1)">−</button>
+          <span>${c.qty}</span>
+          <button onclick="changeQty(${i},1)">+</button>
+        </div>
+      </div>
+      <button class="citem-remove" onclick="removeItem(${i})" title="Eliminar">✕</button>
+    </div>`).join('');
+  const sub=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  document.getElementById('cpanel-subtotal').textContent='₡'+sub.toLocaleString();
+  document.getElementById('cpanel-total').textContent='₡'+sub.toLocaleString();
+}
+function changeQty(i,d){
+  cart[i].qty+=d;
+  if(cart[i].qty<1) cart.splice(i,1);
+  updateCartUI();
+}
+function removeItem(i){cart.splice(i,1);updateCartUI();}
+function openCart(){
+  document.getElementById('cart-overlay').classList.add('open');
+  document.getElementById('cart-panel').classList.add('open');
+  updateCartUI();
+}
+function closeCart(){
+  document.getElementById('cart-overlay').classList.remove('open');
+  document.getElementById('cart-panel').classList.remove('open');
+}
+function checkoutWhatsApp(){
+  if(cart.length===0)return;
+  const lang=document.documentElement.lang||'es';
+  let msg=lang==='en'?'🍷 *Vinoris Order*\n\n':'🍷 *Pedido Vinoris*\n\n';
+  cart.forEach(c=>{
+    msg+=`• ${c.name} x${c.qty} — ₡${(c.price*c.qty).toLocaleString()}\n`;
+  });
+  const total=cart.reduce((s,c)=>s+c.price*c.qty,0);
+  msg+=`\n*Total: ₡${total.toLocaleString()}*`;
+  msg+=lang==='en'?'\n\nPlease confirm my order 🙏':'\n\nPor favor confirmar mi pedido 🙏';
+  window.open('https://wa.me/50688888888?text='+encodeURIComponent(msg),'_blank');
+}
+
+/* ── PRODUCTS FILTER ── */
+function filterProducts(cat){
+  document.querySelectorAll('.pf-tab').forEach(t=>{
+    t.classList.toggle('active', t.getAttribute('onclick')===`filterProducts('${cat}')`);
+  });
+  document.querySelectorAll('.prod-card').forEach(c=>{
+    c.classList.toggle('hidden', cat!=='todos' && c.dataset.cat!==cat);
+  });
+}
+
+applyLang();
+</script>
+</body>
+</html>
