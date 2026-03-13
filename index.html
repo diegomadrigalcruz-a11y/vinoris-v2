@@ -30,7 +30,7 @@
     }
     nav.scrolled{background:rgba(10,10,10,0.98);border-bottom:1px solid rgba(201,168,76,0.1);}
     .nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
-    .nav-logo-icon svg{width:36px;height:36px;}
+    .nav-logo-icon svg{width:42px;height:42px;}
     .nav-logo-text{font-family:'Cormorant Garamond',serif;font-size:1.45rem;font-weight:600;color:var(--cream);letter-spacing:.08em;}
     .nav-logo-text sup{font-size:.6em;color:var(--gold);vertical-align:super;}
     .nav-links{display:flex;align-items:center;gap:32px;}
@@ -273,7 +273,7 @@
 <nav id="main-nav">
   <a href="#" class="nav-logo">
     <span class="nav-logo-icon">
-      <svg viewBox="0 0 30 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <svg viewBox="-2 -6 34 44" fill="none" xmlns="http://www.w3.org/2000/svg">
         <ellipse cx="15" cy="4" rx="4" ry="7" fill="#7B2D50" transform="rotate(-15 15 4)"/>
         <circle cx="15" cy="14" r="4" fill="#7B2D50"/>
         <circle cx="8"  cy="20" r="4.5" fill="#7B2D50"/>
@@ -283,11 +283,10 @@
     </span>
     <span class="nav-logo-text">Vinoris<sup>®</sup></span>
   </a>
-  <div class="nav-links">
-    <a href="#vinos" data-es="Orígenes" data-en="Origins">Orígenes</a>
-    <a href="#productos" data-es="Productos" data-en="Products">Productos</a>
-  </div>
+  <div class="nav-links" style="display:none;"></div>
   <div class="nav-right">
+    <a href="#vinos" style="color:var(--text-dim);text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;" onmouseover="this.style.color='var(--cream)'" onmouseout="this.style.color='var(--text-dim)'" data-es="Orígenes" data-en="Origins">Orígenes</a>
+    <a href="#productos" style="color:var(--text-dim);text-decoration:none;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;transition:color .2s;" onmouseover="this.style.color='var(--cream)'" onmouseout="this.style.color='var(--text-dim)'" data-es="Productos" data-en="Products">Productos</a>
     <div class="lang-switch" onclick="toggleLang()" title="Cambiar Idioma / Change Language">
       <span class="ls-text es">ES</span>
       <span class="ls-text en">EN</span>
@@ -319,38 +318,7 @@
 </section>
 
 <!-- ── TRUST BAR ── -->
-<div class="trust-bar">
-  <div class="trust-inner">
-    <div class="trust-item">
-      <span class="trust-icon">❄️</span>
-      <div class="trust-text">
-        <strong data-es="Cadena de Frío" data-en="Cold Chain">Cadena de Frío</strong>
-        <span data-es="Garantía completa de origen a destino" data-en="Full guarantee from origin to destination">Garantía completa de origen a destino</span>
-      </div>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">✈️</span>
-      <div class="trust-text">
-        <strong data-es="Importación Directa" data-en="Direct Import">Importación Directa</strong>
-        <span data-es="Sin intermediarios, precios justos" data-en="No middlemen, fair prices">Sin intermediarios, precios justos</span>
-      </div>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">📋</span>
-      <div class="trust-text">
-        <strong data-es="Certificado de Origen" data-en="Certificate of Origin">Certificado de Origen</strong>
-        <span data-es="Trazabilidad 100% verificable" data-en="100% verifiable traceability">Trazabilidad 100% verificable</span>
-      </div>
-    </div>
-    <div class="trust-item">
-      <span class="trust-icon">🚚</span>
-      <div class="trust-text">
-        <strong data-es="Envío en 48h" data-en="Delivery in 48h">Envío en 48h</strong>
-        <span data-es="GAM y principales ciudades" data-en="GAM and main cities">GAM y principales ciudades</span>
-      </div>
-    </div>
-  </div>
-</div>
+
 
 <!-- ── MARQUEE ── -->
 <div class="marquee-strip">
