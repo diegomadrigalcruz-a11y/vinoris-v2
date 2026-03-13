@@ -293,7 +293,7 @@
       <span class="ls-text en">EN</span>
       <div class="ls-slider"></div>
     </div>
-    <button class="btn-sommelier" onclick="openSommelier()" data-es="Sommelier" data-en="Sommelier">SOMMELIER</button>
+    <button class="btn-sommelier" onclick="location.href='sommelier.html'" data-es="Sommelier" data-en="Sommelier">SOMMELIER</button>
     <button class="cart-btn" id="cart-toggle" aria-label="Carrito" onclick="openCart()">
       🛒 <span class="cart-count" id="cart-count">0</span>
     </button>
@@ -793,21 +793,6 @@
   </div>
 </section>
 
-<!-- ── SOMMELIER MODAL ── -->
-<div id="sommelier-modal" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <button class="modal-close" onclick="closeSommelier()">✕</button>
-    <div class="modal-grape-icon">🍇</div>
-    <p class="modal-brand">Sommelier · Vinoris</p>
-    <h2 class="modal-title" data-es="Tu Sommelier Personal" data-en="Your Personal Sommelier">Tu Sommelier Personal</h2>
-    <p class="modal-lead" data-es="Cuéntame la ocasión, tus sabores favoritos o con qué maridará el vino. Te recomendaré la botella perfecta." data-en="Tell me about the occasion, your flavors or what you'll pair with. I'll recommend the perfect bottle.">Cuéntame la ocasión, tus sabores favoritos o con qué maridará el vino. Te recomendaré la botella perfecta.</p>
-    <div class="som-messages" id="som-messages"></div>
-    <div class="som-input-row">
-      <input type="text" id="som-input" placeholder="Ej: una cena romántica con carne asada..." onkeypress="if(event.key==='Enter')sendSom()"/>
-      <button id="som-send" onclick="sendSom()" data-es="Enviar" data-en="Send">Enviar</button>
-    </div>
-  </div>
-</div>
 
 <!-- ── CART TOAST ── -->
 <div id="cart-toast">
@@ -956,10 +941,6 @@ function applyLang(){
   });
 }
 
-/* ── SOMMELIER ── */
-function openSommelier(){document.getElementById('sommelier-modal').classList.add('open');}
-function closeSommelier(){document.getElementById('sommelier-modal').classList.remove('open');}
-document.getElementById('sommelier-modal').addEventListener('click',function(e){if(e.target===this)closeSommelier();});
 
 function sendSom(){
   const inp=document.getElementById('som-input'), box=document.getElementById('som-messages');
@@ -999,6 +980,8 @@ const productDB={
   parmigiano:{name:'Parmigiano Reggiano',price:22000,img:'assets/images/queso-parmigiano.png',unit:'kg'},
   mozzarella:{name:'Mozzarella',price:11500,img:'assets/images/queso-mozzarella.png',unit:'kg'},
   burrata:   {name:'Burrata',price:16000,img:'assets/images/queso-burrata.png',unit:'kg'},
+  lasagna:   {name:'Lasagna artesanal italiana',price:14500,img:'assets/images/pasta-lasagna.png',unit:'porción'},
+  ravioli:   {name:'Ravioli ricotta & espinaca',price:13500,img:'assets/images/pasta-ravioli.png',unit:'porción'},
 };
 const pairings={
   celia:      [{n:'Lomito al vino tinto',i:'assets/images/carne-lomito.png',k:'lomito'},{n:'Parmigiano Reggiano',i:'assets/images/queso-parmigiano.png',k:'parmigiano'}],
@@ -1008,6 +991,28 @@ const pairings={
   vizcarra15: [{n:'Queso Mozzarella',i:'assets/images/queso-mozzarella.png',k:'mozzarella'},{n:'New York Steak',i:'assets/images/carne-newyork.png',k:'newyork'}],
 };
 
+/* Load cart from localStorage on start */
+function saveCart(){localStorage.setItem('vinoris_cart',JSON.stringify(cart));}
+function loadCart(){
+  try{
+    const saved=JSON.parse(localStorage.getItem('vinoris_cart')||'[]');
+    // merge into cart using productDB for img/unit, fallback to saved values
+    saved.forEach(s=>{
+      const p=productDB[s.id]||productDB[s.key];
+      cart.push({
+        key: s.id||s.key,
+        name: p?p.name:s.name,
+        price: p?p.price:s.price,
+        img: p?p.img:(s.img||''),
+        unit: p?p.unit:(s.unit||'ud'),
+        qty: s.qty||1
+      });
+    });
+    updateCartUI();
+  }catch(e){}
+}
+loadCart();
+
 function addToCart(name,key){
   const existing=cart.find(c=>c.key===key);
   if(existing){existing.qty++;}
@@ -1016,6 +1021,7 @@ function addToCart(name,key){
     cart.push({key,name:p.name,price:p.price,img:p.img,unit:p.unit,qty:1});
   }
   updateCartUI();
+  saveCart();
   /* Toast */
   document.getElementById('toast-wine').textContent=name;
   const recs=(pairings[key]||[]).map(r=>`
@@ -1068,9 +1074,9 @@ function updateCartUI(){
 function changeQty(i,d){
   cart[i].qty+=d;
   if(cart[i].qty<1) cart.splice(i,1);
-  updateCartUI();
+  updateCartUI(); saveCart();
 }
-function removeItem(i){cart.splice(i,1);updateCartUI();}
+function removeItem(i){cart.splice(i,1);updateCartUI();saveCart();}
 function openCart(){
   document.getElementById('cart-overlay').classList.add('open');
   document.getElementById('cart-panel').classList.add('open');
