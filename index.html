@@ -51,36 +51,20 @@
     .btn-sommelier:hover{background:var(--gold-light);}
 
     /* ── HERO ── */
-    #hero{position:relative;min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;background:var(--black);}
-    .hero-left{position:relative;z-index:3;padding:100px 60px 80px 60px;display:flex;flex-direction:column;justify-content:center;}
-    .hero-left::after{content:'';position:absolute;top:0;right:-60px;bottom:0;width:120px;background:linear-gradient(to right,var(--black),transparent);z-index:1;pointer-events:none;}
-    .hero-right{position:relative;height:100vh;overflow:hidden;}
-    .hero-bottles{position:relative;width:100%;height:100%;background:linear-gradient(to left,#0d0d0d 10%,rgba(13,13,13,.7));}
-    .hero-bottles::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 60% 90%,rgba(191,155,48,.09) 0%,transparent 70%);z-index:0;pointer-events:none;}
-    .hero-bottles::after{content:'';position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,rgba(191,155,48,.07),transparent);z-index:0;pointer-events:none;}
-    .hero-bottle{position:absolute;bottom:0;object-fit:contain;mix-blend-mode:multiply;transition:transform .45s ease;}
-    .hero-bottle:nth-child(1){height:70%;width:14%;left:2%; transform:rotate(-6deg) translateY(3%); opacity:.9; z-index:1;}
-    .hero-bottle:nth-child(2){height:80%;width:15%;left:18%;transform:rotate(-3deg) translateY(1%); opacity:.95;z-index:2;}
-    .hero-bottle:nth-child(3){height:90%;width:16%;left:36%;transform:rotate(0deg)  translateY(0);   opacity:1;  z-index:5;}
-    .hero-bottle:nth-child(4){height:80%;width:15%;left:54%;transform:rotate(3deg)  translateY(1%); opacity:.95;z-index:2;}
-    .hero-bottle:nth-child(5){height:70%;width:14%;left:70%;transform:rotate(6deg)  translateY(3%); opacity:.9; z-index:1;}
-    .hero-bottles:hover .hero-bottle:nth-child(1){transform:rotate(-6deg) translateY(0%);}
-    .hero-bottles:hover .hero-bottle:nth-child(2){transform:rotate(-3deg) translateY(-2%);}
-    .hero-bottles:hover .hero-bottle:nth-child(3){transform:rotate(0deg)  translateY(-4%);}
-    .hero-bottles:hover .hero-bottle:nth-child(4){transform:rotate(3deg)  translateY(-2%);}
-    .hero-bottles:hover .hero-bottle:nth-child(5){transform:rotate(6deg)  translateY(0%);}
-    .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(191,155,48,.3);padding:6px 16px;border-radius:20px;margin-bottom:28px;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);width:fit-content;}
-    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,4.5vw,4.8rem);font-weight:300;line-height:1.06;margin-bottom:24px;}
-    .hero-title em{font-style:italic;color:var(--gold);}
-    .hero-sub{color:var(--muted);font-size:.92rem;margin-bottom:40px;max-width:420px;line-height:1.75;}
-    .hero-cta{display:inline-block;background:var(--gold);color:var(--obsidian);padding:14px 40px;text-decoration:none;font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:background .2s;width:fit-content;}
-    .hero-cta:hover{background:var(--gold-light);}
+    #hero{position:relative;height:100vh;min-height:620px;display:flex;align-items:center;overflow:hidden;}
+    #hero::before{content:'';position:absolute;inset:0;background:url('assets/images/hero-scene.png') center/cover no-repeat;z-index:0;}
+    #hero::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(5,5,5,.92) 0%,rgba(5,5,5,.75) 40%,rgba(5,5,5,.2) 65%,transparent 100%);z-index:1;}
+    .hero-content{position:relative;z-index:2;max-width:560px;padding:0 60px;}
     .hero-wm{display:none;}
-    @media(max-width:900px){
-      #hero{grid-template-columns:1fr;min-height:auto;}
-      .hero-left{padding:80px 28px 40px;}
-      .hero-right{height:55vw;min-height:320px;}
-      .hero-left::after{display:none;}
+    .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(191,155,48,.35);padding:6px 18px;border-radius:20px;margin-bottom:32px;font-size:.66rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);}
+    .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.8rem,5vw,5rem);font-weight:300;line-height:1.05;margin-bottom:22px;color:var(--cream);}
+    .hero-title em{font-style:italic;color:var(--gold);display:block;}
+    .hero-sub{color:var(--muted);font-size:.9rem;margin-bottom:42px;line-height:1.8;max-width:420px;}
+    .hero-cta{display:inline-block;background:var(--gold);color:var(--obsidian);padding:15px 44px;text-decoration:none;font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;font-weight:500;transition:background .25s,transform .25s;}
+    .hero-cta:hover{background:var(--gold-light);transform:translateY(-2px);}
+    @media(max-width:768px){
+      .hero-content{padding:0 28px;max-width:100%;}
+      #hero::after{background:linear-gradient(to bottom,rgba(5,5,5,.85) 0%,rgba(5,5,5,.6) 60%,rgba(5,5,5,.85) 100%);}
     }
 
     /* ── TRUST BAR ── */
@@ -322,22 +306,11 @@
 
 <!-- ── HERO ── -->
 <section id="hero">
-  <!-- LEFT: Text -->
-  <div class="hero-left">
+  <div class="hero-content">
     <div class="hero-badge">🚚 <span data-es="48h Entrega en GAM" data-en="48h Delivery in GAM">48h Entrega en GAM</span></div>
-    <h1 class="hero-title" data-es="Sabores del Mundo,<br><em>en Tu Mesa</em>" data-en="Flavors of the World,<br><em>at Your Table</em>">Sabores del Mundo,<br><em>en Tu Mesa</em></h1>
+    <h1 class="hero-title" data-es="Sabores del Mundo,<em>en Tu Mesa</em>" data-en="Flavors of the World,<em>at Your Table</em>">Sabores del Mundo,<em>en Tu Mesa</em></h1>
     <p class="hero-sub" data-es="Vinos de Ribera del Duero, cortes premium, quesos de autor y pastas artesanales. Todo lo que necesitás para convertir cada mesa en una experiencia inolvidable." data-en="Ribera del Duero wines, premium cuts, artisan cheeses and handmade pastas. Everything you need to turn every table into an unforgettable experience.">Vinos de Ribera del Duero, cortes premium, quesos de autor y pastas artesanales. Todo lo que necesitás para convertir cada mesa en una experiencia inolvidable.</p>
     <a href="#vinos" class="hero-cta" data-es="Explorar Colección" data-en="Explore Collection">Explorar Colección</a>
-  </div>
-  <!-- RIGHT: Bottles -->
-  <div class="hero-right">
-    <div class="hero-bottles">
-      <img class="hero-bottle" src="assets/images/BOTELLA SENDA DEL ORO.jpg"     alt="Senda del Oro"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA TORRALVO.jpg"          alt="Torralvo"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA CELIA.jpg"             alt="Celia Vizcarra"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA MERLOT.png"            alt="Vizcarra Merlot"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA VIZCARRA 15 MESES.jpg" alt="Vizcarra 15 Meses"/>
-    </div>
   </div>
 </section>
 
