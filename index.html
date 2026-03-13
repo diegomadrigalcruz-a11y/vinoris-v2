@@ -265,40 +265,6 @@
       .prod-grid{grid-template-columns:repeat(2,1fr);gap:14px;}
     }
     @media(max-width:480px){.prod-grid{grid-template-columns:1fr;}}
-
-    /* ── FICHA TÉCNICA BUTTON ── */
-    .btn-ficha{background:transparent;color:var(--gold);border:1px solid var(--gold);padding:10px 18px;font-size:.72rem;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .3s;font-family:'Inter',sans-serif;}
-    .btn-ficha:hover{background:var(--gold);color:var(--obsidian);}
-
-    /* ── FICHA MODAL ── */
-    .ficha-overlay{position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:10000;display:none;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(8px);}
-    .ficha-overlay.active{display:flex;animation:fichaFadeIn .4s ease;}
-    @keyframes fichaFadeIn{from{opacity:0}to{opacity:1}}
-    .ficha-modal{background:linear-gradient(145deg,#1a1a1a 0%,#0d0d0d 100%);border:1px solid rgba(191,155,48,.25);border-radius:12px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;position:relative;animation:fichaSlideUp .5s ease;}
-    @keyframes fichaSlideUp{from{transform:translateY(40px);opacity:0}to{transform:translateY(0);opacity:1}}
-    .ficha-close{position:absolute;top:16px;right:20px;background:none;border:none;color:var(--gold);font-size:1.5rem;cursor:pointer;z-index:2;transition:transform .2s;}
-    .ficha-close:hover{transform:rotate(90deg);}
-    .ficha-header{padding:32px 32px 20px;border-bottom:1px solid rgba(191,155,48,.15);display:flex;align-items:center;gap:20px;}
-    .ficha-header-img{width:120px;height:auto;border-radius:8px;object-fit:contain;}
-    .ficha-header-info{flex:1;}
-    .ficha-do{color:var(--gold);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:6px;}
-    .ficha-wine-name{font-family:'Cormorant Garamond',serif;font-size:2rem;color:var(--cream);font-weight:400;}
-    .ficha-section{padding:24px 32px;border-bottom:1px solid rgba(191,155,48,.08);}
-    .ficha-section:last-of-type{border-bottom:none;}
-    .ficha-section-title{color:var(--gold);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
-    .ficha-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
-    .ficha-stat{text-align:center;padding:14px 10px;background:rgba(191,155,48,.06);border-radius:8px;border:1px solid rgba(191,155,48,.1);}
-    .ficha-stat-label{font-size:.65rem;color:var(--text-dim);letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px;}
-    .ficha-stat-value{font-family:'Cormorant Garamond',serif;font-size:1.2rem;color:var(--cream);}
-    .ficha-notes{color:var(--text-dim);font-size:.88rem;line-height:1.7;}
-    .ficha-note-row{display:flex;gap:10px;margin-bottom:10px;}
-    .ficha-note-icon{font-size:1.1rem;flex-shrink:0;}
-    .ficha-pairing-list{display:flex;flex-wrap:wrap;gap:8px;}
-    .ficha-pairing{background:rgba(191,155,48,.1);border:1px solid rgba(191,155,48,.15);padding:6px 14px;border-radius:20px;color:var(--cream);font-size:.78rem;}
-    .ficha-download{display:flex;justify-content:center;padding:20px 32px 28px;}
-    .ficha-download a{display:inline-flex;align-items:center;gap:8px;background:var(--gold);color:var(--obsidian);padding:12px 28px;border-radius:6px;text-decoration:none;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;font-weight:600;transition:all .3s;}
-    .ficha-download a:hover{background:#d4a835;transform:translateY(-2px);box-shadow:0 6px 20px rgba(191,155,48,.3);}
-    @media(max-width:600px){.ficha-grid{grid-template-columns:repeat(2,1fr);}.ficha-header{flex-direction:column;text-align:center;}.ficha-header-img{width:90px;}}
   </style>
 </head>
 <body>
@@ -410,9 +376,8 @@
           <p class="slide-desc">Viñas de 70 años. 93% Tinto Fino y 7% Garnacha. 18 meses en roble francés. Taninos aterciopelados, frutos rojos elegantes y un final que permanece.</p>
           <div class="slide-tags"><span class="slide-tag">Tinto Fino 93%</span><span class="slide-tag">18 meses roble</span><span class="slide-tag">Viñas 70 años</span></div>
           <div class="slide-actions">
-            <button class="btn-discover" onclick="openFicha('celia')" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-discover" onclick="location.href='vinos/celia-vizcarra.html'" data-es="Descubrir" data-en="Discover">Descubrir</button>
             <button class="btn-cart" onclick="addToCart('Celia Vizcarra','celia')" data-es="Agregar" data-en="Add">Agregar</button>
-            <button class="btn-ficha" onclick="openFicha('celia')" data-es="Ficha Técnica" data-en="Data Sheet">📋 Ficha Técnica</button>
           </div>
         </div>
       </div>
@@ -425,9 +390,8 @@
           <p class="slide-desc">100% Merlot. 24 meses en roble francés. Estilo Pomerol. Ciruela negra madura, chocolate amargo y una estructura sedosa de larga crianza.</p>
           <div class="slide-tags"><span class="slide-tag">100% Merlot</span><span class="slide-tag">24 meses roble</span><span class="slide-tag">Estilo Pomerol</span></div>
           <div class="slide-actions">
-            <button class="btn-discover" onclick="openFicha('merlot')" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-discover" onclick="location.href='vinos/vizcarra-merlot.html'" data-es="Descubrir" data-en="Discover">Descubrir</button>
             <button class="btn-cart" onclick="addToCart('Vizcarra Merlot','merlot')" data-es="Agregar" data-en="Add">Agregar</button>
-            <button class="btn-ficha" onclick="openFicha('merlot')" data-es="Ficha Técnica" data-en="Data Sheet">📋 Ficha Técnica</button>
           </div>
         </div>
       </div>
@@ -440,9 +404,8 @@
           <p class="slide-desc">100% Tinto Fino. 6 meses en barrica. Frambuesa, fresa y cereza fresca. El vino de entrada perfecta al universo de Ribera del Duero.</p>
           <div class="slide-tags"><span class="slide-tag">100% Tinto Fino</span><span class="slide-tag">6 meses barrica</span><span class="slide-tag">Frutos rojos</span></div>
           <div class="slide-actions">
-            <button class="btn-discover" onclick="openFicha('senda')" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-discover" onclick="location.href='vinos/senda-del-oro.html'" data-es="Descubrir" data-en="Discover">Descubrir</button>
             <button class="btn-cart" onclick="addToCart('Senda del Oro','senda')" data-es="Agregar" data-en="Add">Agregar</button>
-            <button class="btn-ficha" onclick="openFicha('senda')" data-es="Ficha Técnica" data-en="Data Sheet">📋 Ficha Técnica</button>
           </div>
         </div>
       </div>
@@ -455,9 +418,8 @@
           <p class="slide-desc">Viñedos de 60 años. 18 meses en roble. Fruta negra intensa, mineralidad y especias. El alma de la meseta castellana con elegancia y poder.</p>
           <div class="slide-tags"><span class="slide-tag">Viñedos 60 años</span><span class="slide-tag">18 meses roble</span><span class="slide-tag">Gran potencial</span></div>
           <div class="slide-actions">
-            <button class="btn-discover" onclick="openFicha('torralvo')" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-discover" onclick="location.href='vinos/torralvo.html'" data-es="Descubrir" data-en="Discover">Descubrir</button>
             <button class="btn-cart" onclick="addToCart('Torralvo','torralvo')" data-es="Agregar" data-en="Add">Agregar</button>
-            <button class="btn-ficha" onclick="openFicha('torralvo')" data-es="Ficha Técnica" data-en="Data Sheet">📋 Ficha Técnica</button>
           </div>
         </div>
       </div>
@@ -470,9 +432,8 @@
           <p class="slide-desc">100% Tinto Fino de viñas con más de 30 años. 15 meses en barrica. El equilibrio perfecto entre potencia y finura. Un clásico que nunca decepciona.</p>
           <div class="slide-tags"><span class="slide-tag">100% Tinto Fino</span><span class="slide-tag">+30 años viña</span><span class="slide-tag">15 meses barrica</span></div>
           <div class="slide-actions">
-            <button class="btn-discover" onclick="openFicha('vizcarra15')" data-es="Descubrir" data-en="Discover">Descubrir</button>
+            <button class="btn-discover" onclick="location.href='vinos/vizcarra-15-meses.html'" data-es="Descubrir" data-en="Discover">Descubrir</button>
             <button class="btn-cart" onclick="addToCart('Vizcarra 15 Meses','vizcarra15')" data-es="Agregar" data-en="Add">Agregar</button>
-            <button class="btn-ficha" onclick="openFicha('vizcarra15')" data-es="Ficha Técnica" data-en="Data Sheet">📋 Ficha Técnica</button>
           </div>
         </div>
       </div>
@@ -486,9 +447,8 @@
           <p class="slide-desc">Viñas de 70 años. 93% Tinto Fino y 7% Garnacha. 18 meses en roble francés. Taninos aterciopelados, frutos rojos elegantes y un final que permanece.</p>
           <div class="slide-tags"><span class="slide-tag">Tinto Fino 93%</span><span class="slide-tag">18 meses roble</span></div>
           <div class="slide-actions">
-            <button class="btn-discover" onclick="openFicha('celia')">Descubrir</button>
+            <button class="btn-discover" onclick="location.href='vinos/celia-vizcarra.html'">Descubrir</button>
             <button class="btn-cart" onclick="addToCart('Celia Vizcarra','celia')">Agregar</button>
-            <button class="btn-ficha" onclick="openFicha('celia')">📋 Ficha Técnica</button>
           </div>
         </div>
       </div>
@@ -831,11 +791,6 @@
   </div>
 </div>
 
-<!-- ── FICHA TÉCNICA MODAL ── -->
-<div class="ficha-overlay" id="ficha-overlay" onclick="if(event.target===this)closeFicha()">
-  <div class="ficha-modal" id="ficha-modal-content"></div>
-</div>
-
 <!-- ── CART PANEL ── -->
 <div id="cart-overlay" onclick="closeCart()"></div>
 <div id="cart-panel">
@@ -1113,141 +1068,6 @@ function filterProducts(cat){
   document.querySelectorAll('.prod-card').forEach(c=>{
     c.classList.toggle('hidden', cat!=='todos' && c.dataset.cat!==cat);
   });
-}
-
-/* ── FICHA TÉCNICA MODAL ── */
-const fichaData = {
-  celia: {
-    name: 'Celia Vizcarra',
-    do: 'D.O. Ribera del Duero · Reserva',
-    img: 'assets/images/BOTELLA CELIA.jpg',
-    pdf: 'ficha_tecnica/FICHA TÉCNICA CELIA VIZCARRA.pdf',
-    variedad: '93% Tinto Fino, 7% Garnacha',
-    alcohol: '14.5%',
-    crianza: '18 meses roble francés',
-    temperatura: '16-18°C',
-    vinedos: 'Viñas de 70 años',
-    produccion: 'Limitada',
-    visual: 'Rojo cereza intenso con borde granate. Lágrima lenta y persistente.',
-    olfativa: 'Frutos rojos maduros, cereza negra, notas de vainilla, tabaco y especias dulces del roble francés.',
-    gustativa: 'Taninos aterciopelados de gran elegancia. Entrada amplia, paso sedoso con frutos rojos y un final largo con recuerdos minerales.',
-    maridajes: ['Parmigiano Reggiano', 'Cordero asado', 'Solomillo ibérico', 'Quesos curados']
-  },
-  merlot: {
-    name: 'Vizcarra Merlot',
-    do: 'Vino de la Tierra · Castilla y León',
-    img: 'assets/images/BOTELLA MERLOT.png',
-    pdf: 'ficha_tecnica/FICHA TÉCNICA VIZCARRA MERLOT.pdf',
-    variedad: '100% Merlot',
-    alcohol: '14%',
-    crianza: '24 meses roble francés',
-    temperatura: '16-18°C',
-    vinedos: 'Parcelas seleccionadas',
-    produccion: 'Limitada',
-    visual: 'Rojo violáceo profundo, denso y brillante con reflejos púrpura.',
-    olfativa: 'Ciruela negra madura, chocolate amargo, café tostado y notas florales de violeta.',
-    gustativa: 'Estructura sedosa estilo Pomerol. Fruta negra concentrada, taninos pulidos y un final con notas de cacao y especias.',
-    maridajes: ['Rib Eye', 'Gorgonzola', 'Magret de pato', 'Risotto de setas']
-  },
-  senda: {
-    name: 'Senda del Oro',
-    do: 'D.O. Ribera del Duero · Joven',
-    img: 'assets/images/BOTELLA SENDA DEL ORO.jpg',
-    pdf: 'ficha_tecnica/FICHA TÉCNICA SENDA DEL ORO.pdf',
-    variedad: '100% Tinto Fino',
-    alcohol: '13.5%',
-    crianza: '6 meses en barrica',
-    temperatura: '14-16°C',
-    vinedos: 'Viñas jóvenes selectas',
-    produccion: 'Regular',
-    visual: 'Rojo cereza vivo con tonos violáceos juveniles y luminosos.',
-    olfativa: 'Frambuesa, fresa silvestre, cereza fresca con ligeras notas florales y un toque herbáceo.',
-    gustativa: 'Frutal, fresco y envolvente. Entrada amable, acidez equilibrada. La puerta de entrada perfecta al universo Ribera del Duero.',
-    maridajes: ['Pecorino Sardo', 'Queso Feta', 'Mozzarella', 'Pasta al pomodoro']
-  },
-  torralvo: {
-    name: 'Torralvo',
-    do: 'D.O. Ribera del Duero · Crianza',
-    img: 'assets/images/BOTELLA TORRALVO.jpg',
-    pdf: 'ficha_tecnica/FICHA TÉCNICA TORRALVO.pdf',
-    variedad: '100% Tinto Fino',
-    alcohol: '14.5%',
-    crianza: '18 meses en roble',
-    temperatura: '16-18°C',
-    vinedos: 'Viñedos de 60 años',
-    produccion: 'Limitada',
-    visual: 'Rojo picota intenso con capa alta y borde aún violáceo.',
-    olfativa: 'Fruta negra intensa, moras, mineralidad, regaliz negro y especias como pimienta negra y clavo.',
-    gustativa: 'Potente y mineral. Taninos firmes pero elegantes. El alma de la meseta castellana con persistencia larga y compleja.',
-    maridajes: ['New York Steak', 'Pecorino Romano', 'Chuletón', 'Guiso de caza']
-  },
-  vizcarra15: {
-    name: 'Vizcarra 15 Meses',
-    do: 'D.O. Ribera del Duero · Crianza',
-    img: 'assets/images/BOTELLA VIZCARRA 15 MESES.jpg',
-    pdf: 'ficha_tecnica/FICHA TÉCNICA VIZCARRA.pdf',
-    variedad: '100% Tinto Fino',
-    alcohol: '14%',
-    crianza: '15 meses en barrica',
-    temperatura: '16-18°C',
-    vinedos: 'Viñas +30 años',
-    produccion: 'Bandera de la bodega',
-    visual: 'Rojo rubí con matices granate. Brillante y de capa media-alta.',
-    olfativa: 'Frutos rojos y negros maduros, vainilla elegante, tostados suaves y un fondo mineral terroso.',
-    gustativa: 'Equilibrio perfecto entre potencia y finura. Estructura carnosa, taninos amables y un final sedoso y prolongado. Un clásico que nunca decepciona.',
-    maridajes: ['Lomito', 'Burrata', 'Entrecot a la brasa', 'Quesos semicurados']
-  }
-};
-
-function openFicha(id) {
-  const d = fichaData[id];
-  if (!d) return;
-  const modal = document.getElementById('ficha-modal-content');
-  modal.innerHTML = `
-    <button class="ficha-close" onclick="closeFicha()">✕</button>
-    <div class="ficha-header">
-      <img class="ficha-header-img" src="${d.img}" alt="${d.name}"/>
-      <div class="ficha-header-info">
-        <p class="ficha-do">${d.do}</p>
-        <h2 class="ficha-wine-name">${d.name}</h2>
-      </div>
-    </div>
-    <div class="ficha-section">
-      <p class="ficha-section-title">📊 ${lang==='en'?'Technical Data':'Datos Técnicos'}</p>
-      <div class="ficha-grid">
-        <div class="ficha-stat"><div class="ficha-stat-label">${lang==='en'?'Grape':'Variedad'}</div><div class="ficha-stat-value">${d.variedad}</div></div>
-        <div class="ficha-stat"><div class="ficha-stat-label">${lang==='en'?'Alcohol':'Alcohol'}</div><div class="ficha-stat-value">${d.alcohol}</div></div>
-        <div class="ficha-stat"><div class="ficha-stat-label">${lang==='en'?'Aging':'Crianza'}</div><div class="ficha-stat-value">${d.crianza}</div></div>
-        <div class="ficha-stat"><div class="ficha-stat-label">${lang==='en'?'Serving Temp':'Temperatura'}</div><div class="ficha-stat-value">${d.temperatura}</div></div>
-        <div class="ficha-stat"><div class="ficha-stat-label">${lang==='en'?'Vineyards':'Viñedos'}</div><div class="ficha-stat-value">${d.vinedos}</div></div>
-        <div class="ficha-stat"><div class="ficha-stat-label">${lang==='en'?'Production':'Producción'}</div><div class="ficha-stat-value">${d.produccion}</div></div>
-      </div>
-    </div>
-    <div class="ficha-section">
-      <p class="ficha-section-title">👃 ${lang==='en'?'Tasting Notes':'Notas de Cata'}</p>
-      <div class="ficha-notes">
-        <div class="ficha-note-row"><span class="ficha-note-icon">👁️</span><span><strong>${lang==='en'?'Visual':'Visual'}:</strong> ${d.visual}</span></div>
-        <div class="ficha-note-row"><span class="ficha-note-icon">👃</span><span><strong>${lang==='en'?'Nose':'Olfativa'}:</strong> ${d.olfativa}</span></div>
-        <div class="ficha-note-row"><span class="ficha-note-icon">👅</span><span><strong>${lang==='en'?'Palate':'Gustativa'}:</strong> ${d.gustativa}</span></div>
-      </div>
-    </div>
-    <div class="ficha-section">
-      <p class="ficha-section-title">🍽️ ${lang==='en'?'Suggested Pairings':'Maridaje Sugerido'}</p>
-      <div class="ficha-pairing-list">
-        ${d.maridajes.map(m=>'<span class="ficha-pairing">'+m+'</span>').join('')}
-      </div>
-    </div>
-    <div class="ficha-download">
-      <a href="${d.pdf}" target="_blank" download>📥 ${lang==='en'?'Download Data Sheet':'Descargar Ficha Técnica'}</a>
-    </div>
-  `;
-  document.getElementById('ficha-overlay').classList.add('active');
-  document.body.style.overflow = 'hidden';
-}
-
-function closeFicha() {
-  document.getElementById('ficha-overlay').classList.remove('active');
-  document.body.style.overflow = '';
 }
 
 applyLang();

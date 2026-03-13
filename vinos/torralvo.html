@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Torralvo | Vinoris</title>
+  <meta name="description" content="Torralvo — D.O. Ribera del Duero. Crianza. 100% Tinto Fino de viñedos de 60 años. Potente y mineral."/>
+  <link rel="icon" href="../assets/images/favicon.svg"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;}
+    :root{--obsidian:#0a0a0a;--dark2:#141414;--dark3:#1c1c1c;--gold:#BF9B30;--cream:#f5f0e8;--text-dim:rgba(245,240,232,.6);--burgundy:#7B2D50;}
+    body{background:var(--obsidian);color:var(--cream);font-family:'Inter',sans-serif;font-weight:300;}
+    a{color:var(--gold);text-decoration:none;transition:opacity .2s;}a:hover{opacity:.8;}
+    .wn-nav{display:flex;align-items:center;justify-content:space-between;padding:18px 40px;border-bottom:1px solid rgba(191,155,48,.1);position:sticky;top:0;background:rgba(10,10,10,.95);backdrop-filter:blur(12px);z-index:100;}
+    .wn-nav-logo{display:flex;align-items:center;gap:10px;text-decoration:none;}.wn-nav-logo svg{width:32px;height:40px;}.wn-nav-logo span{font-family:'Cormorant Garamond',serif;font-size:1.4rem;color:var(--cream);font-weight:400;}
+    .wn-back{display:inline-flex;align-items:center;gap:6px;color:var(--text-dim);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;transition:color .2s;}.wn-back:hover{color:var(--cream);opacity:1;}
+    .wn-hero{display:grid;grid-template-columns:1fr 1fr;min-height:70vh;align-items:center;padding:60px;gap:50px;background:linear-gradient(135deg,#0d0d0d 0%,#1a1a14 50%,#0d0d0d 100%);}
+    .wn-hero-img{display:flex;justify-content:center;align-items:center;}.wn-hero-img img{max-height:500px;width:auto;filter:drop-shadow(0 20px 40px rgba(0,0,0,.6));animation:wineFloat 4s ease-in-out infinite;}
+    @keyframes wineFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+    .wn-do{color:var(--gold);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:12px;}
+    .wn-name{font-family:'Cormorant Garamond',serif;font-size:3.2rem;color:var(--cream);font-weight:400;line-height:1.1;margin-bottom:16px;}
+    .wn-tagline{color:var(--text-dim);font-size:1rem;line-height:1.7;max-width:460px;}
+    .wn-section{max-width:860px;margin:0 auto;padding:50px 40px;}
+    .wn-section-title{color:var(--gold);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:10px;}.wn-section-title::after{content:'';flex:1;height:1px;background:rgba(191,155,48,.15);}
+    .wn-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+    .wn-stat{text-align:center;padding:20px 14px;background:rgba(191,155,48,.04);border-radius:10px;border:1px solid rgba(191,155,48,.12);transition:border-color .3s;}.wn-stat:hover{border-color:rgba(191,155,48,.35);}
+    .wn-stat-label{font-size:.6rem;color:var(--text-dim);letter-spacing:.14em;text-transform:uppercase;margin-bottom:6px;}
+    .wn-stat-value{font-family:'Cormorant Garamond',serif;font-size:1.15rem;color:var(--cream);}
+    .wn-notes{display:flex;flex-direction:column;gap:18px;}
+    .wn-note{display:flex;gap:14px;padding:18px;background:rgba(191,155,48,.03);border-radius:10px;border:1px solid rgba(191,155,48,.06);}
+    .wn-note-icon{font-size:1.4rem;flex-shrink:0;width:36px;height:36px;display:flex;align-items:center;justify-content:center;background:rgba(191,155,48,.08);border-radius:8px;}
+    .wn-note-label{font-size:.65rem;color:var(--gold);letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;}
+    .wn-note-text{color:var(--text-dim);font-size:.88rem;line-height:1.7;}
+    .wn-pairings{display:flex;flex-wrap:wrap;gap:10px;}
+    .wn-pairing{background:rgba(191,155,48,.08);border:1px solid rgba(191,155,48,.18);padding:8px 18px;border-radius:24px;color:var(--cream);font-size:.82rem;transition:all .3s;}.wn-pairing:hover{background:rgba(191,155,48,.18);transform:translateY(-2px);}
+    .wn-download{text-align:center;padding:40px;margin:20px auto;max-width:860px;}
+    .wn-download a{display:inline-flex;align-items:center;gap:10px;background:var(--gold);color:var(--obsidian);padding:14px 36px;border-radius:8px;font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;font-weight:600;transition:all .3s;text-decoration:none;}.wn-download a:hover{background:#d4a835;transform:translateY(-3px);box-shadow:0 8px 28px rgba(191,155,48,.3);opacity:1;}
+    .wn-divider{max-width:860px;margin:0 auto;height:1px;background:linear-gradient(90deg,transparent,rgba(191,155,48,.2),transparent);}
+    .wn-footer{text-align:center;padding:40px;color:var(--text-dim);font-size:.75rem;border-top:1px solid rgba(191,155,48,.08);}.wn-footer a{color:var(--gold);}
+    @media(max-width:768px){.wn-hero{grid-template-columns:1fr;padding:40px 24px;text-align:center;min-height:auto;}.wn-hero-img img{max-height:340px;}.wn-name{font-size:2.4rem;}.wn-section{padding:36px 24px;}.wn-grid{grid-template-columns:repeat(2,1fr);}.wn-nav{padding:14px 20px;}}
+    @media(max-width:480px){.wn-grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+<nav class="wn-nav">
+  <a href="../index.html" class="wn-nav-logo"><svg viewBox="0 0 44 56" fill="none"><path d="M22,0 C28,7 28,17 22,24 C16,17 16,7 22,0Z" fill="#7B2D50" transform="rotate(-20 22 12)"/><circle cx="10" cy="30" r="6.5" fill="#7B2D50"/><circle cx="34" cy="30" r="6.5" fill="#7B2D50"/><circle cx="15" cy="42" r="6.5" fill="#7B2D50"/><circle cx="29" cy="42" r="6.5" fill="#7B2D50"/><circle cx="22" cy="52" r="6.5" fill="#7B2D50"/></svg><span>Vinoris<sup>®</sup></span></a>
+  <a href="../index.html#vinos" class="wn-back">← Volver a la colección</a>
+</nav>
+<section class="wn-hero">
+  <div class="wn-hero-img"><img src="../assets/images/BOTELLA TORRALVO.jpg" alt="Torralvo"/></div>
+  <div class="wn-hero-info">
+    <p class="wn-do">D.O. Ribera del Duero · Crianza</p>
+    <h1 class="wn-name">Torralvo</h1>
+    <p class="wn-tagline">Viñedos de 60 años. 18 meses en roble. Fruta negra intensa, mineralidad y especias. El alma de la meseta castellana con elegancia y poder.</p>
+  </div>
+</section>
+<div class="wn-divider"></div>
+<section class="wn-section">
+  <p class="wn-section-title">📊 Datos Técnicos</p>
+  <div class="wn-grid">
+    <div class="wn-stat"><div class="wn-stat-label">Variedad</div><div class="wn-stat-value">100% Tinto Fino</div></div>
+    <div class="wn-stat"><div class="wn-stat-label">Alcohol</div><div class="wn-stat-value">14.5%</div></div>
+    <div class="wn-stat"><div class="wn-stat-label">Crianza</div><div class="wn-stat-value">18 meses<br>en roble</div></div>
+    <div class="wn-stat"><div class="wn-stat-label">Temperatura</div><div class="wn-stat-value">16-18°C</div></div>
+    <div class="wn-stat"><div class="wn-stat-label">Viñedos</div><div class="wn-stat-value">Viñedos de 60 años</div></div>
+    <div class="wn-stat"><div class="wn-stat-label">Producción</div><div class="wn-stat-value">Limitada</div></div>
+  </div>
+</section>
+<div class="wn-divider"></div>
+<section class="wn-section">
+  <p class="wn-section-title">👃 Notas de Cata</p>
+  <div class="wn-notes">
+    <div class="wn-note"><div class="wn-note-icon">👁️</div><div class="wn-note-content"><p class="wn-note-label">Visual</p><p class="wn-note-text">Rojo picota intenso con capa alta y borde aún violáceo. Densa y concentrada.</p></div></div>
+    <div class="wn-note"><div class="wn-note-icon">👃</div><div class="wn-note-content"><p class="wn-note-label">Olfativa</p><p class="wn-note-text">Fruta negra intensa, moras, mineralidad, regaliz negro y especias como pimienta negra y clavo.</p></div></div>
+    <div class="wn-note"><div class="wn-note-icon">👅</div><div class="wn-note-content"><p class="wn-note-label">Gustativa</p><p class="wn-note-text">Potente y mineral. Taninos firmes pero elegantes. El alma de la meseta castellana con persistencia larga y compleja.</p></div></div>
+  </div>
+</section>
+<div class="wn-divider"></div>
+<section class="wn-section">
+  <p class="wn-section-title">🍽️ Maridaje Sugerido</p>
+  <div class="wn-pairings">
+    <span class="wn-pairing">New York Steak</span><span class="wn-pairing">Pecorino Romano</span><span class="wn-pairing">Chuletón</span><span class="wn-pairing">Guiso de caza</span>
+  </div>
+</section>
+<div class="wn-divider"></div>
+<div class="wn-download"><a href="../ficha_tecnica/FICHA TÉCNICA TORRALVO.pdf" target="_blank" download>📥 Descargar Ficha Técnica</a></div>
+<footer class="wn-footer"><p>© 2025 Vinoris® — <a href="https://wa.me/50688888888" target="_blank">Contáctanos por WhatsApp</a></p></footer>
+</body>
+</html>
