@@ -55,20 +55,20 @@
     .hero-left{position:relative;z-index:3;padding:100px 60px 80px 60px;display:flex;flex-direction:column;justify-content:center;}
     .hero-left::after{content:'';position:absolute;top:0;right:-60px;bottom:0;width:120px;background:linear-gradient(to right,var(--black),transparent);z-index:1;pointer-events:none;}
     .hero-right{position:relative;height:100vh;overflow:hidden;}
-    .hero-bottles{position:relative;width:100%;height:100%;display:flex;align-items:flex-end;justify-content:center;gap:0;padding-bottom:0;background:linear-gradient(to left,#0d0d0d,rgba(10,10,10,.6));}
-    .hero-bottles::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 60% 80%,rgba(191,155,48,.07) 0%,transparent 70%);z-index:0;}
-    .hero-bottle{position:absolute;bottom:0;object-fit:contain;filter:drop-shadow(0 20px 60px rgba(0,0,0,.8));transition:transform .4s ease;}
-    .hero-bottle:nth-child(1){height:72%;left:2%;transform:rotate(-6deg) translateY(2%);opacity:.85;z-index:1;}
-    .hero-bottle:nth-child(2){height:82%;left:18%;transform:rotate(-3deg) translateY(-1%);opacity:.92;z-index:2;}
-    .hero-bottle:nth-child(3){height:90%;left:36%;transform:rotate(0deg) translateY(0);opacity:1;z-index:5;}
-    .hero-bottle:nth-child(4){height:82%;left:54%;transform:rotate(3deg) translateY(-1%);opacity:.92;z-index:2;}
-    .hero-bottle:nth-child(5){height:72%;left:70%;transform:rotate(6deg) translateY(2%);opacity:.85;z-index:1;}
-    .hero-bottles:hover .hero-bottle:nth-child(1){transform:rotate(-6deg) translateY(-1%);}
-    .hero-bottles:hover .hero-bottle:nth-child(2){transform:rotate(-3deg) translateY(-3%);}
-    .hero-bottles:hover .hero-bottle:nth-child(3){transform:rotate(0deg) translateY(-4%);}
-    .hero-bottles:hover .hero-bottle:nth-child(4){transform:rotate(3deg) translateY(-3%);}
-    .hero-bottles:hover .hero-bottle:nth-child(5){transform:rotate(6deg) translateY(-1%);}
-    .hero-glow{position:absolute;bottom:0;left:0;right:0;height:40%;background:linear-gradient(to top,rgba(191,155,48,.06),transparent);z-index:0;}
+    .hero-bottles{position:relative;width:100%;height:100%;background:linear-gradient(to left,#0d0d0d 10%,rgba(13,13,13,.7));}
+    .hero-bottles::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 60% 90%,rgba(191,155,48,.09) 0%,transparent 70%);z-index:0;pointer-events:none;}
+    .hero-bottles::after{content:'';position:absolute;bottom:0;left:0;right:0;height:35%;background:linear-gradient(to top,rgba(191,155,48,.07),transparent);z-index:0;pointer-events:none;}
+    .hero-bottle{position:absolute;bottom:0;object-fit:contain;mix-blend-mode:multiply;transition:transform .45s ease;}
+    .hero-bottle:nth-child(1){height:70%;width:14%;left:2%; transform:rotate(-6deg) translateY(3%); opacity:.9; z-index:1;}
+    .hero-bottle:nth-child(2){height:80%;width:15%;left:18%;transform:rotate(-3deg) translateY(1%); opacity:.95;z-index:2;}
+    .hero-bottle:nth-child(3){height:90%;width:16%;left:36%;transform:rotate(0deg)  translateY(0);   opacity:1;  z-index:5;}
+    .hero-bottle:nth-child(4){height:80%;width:15%;left:54%;transform:rotate(3deg)  translateY(1%); opacity:.95;z-index:2;}
+    .hero-bottle:nth-child(5){height:70%;width:14%;left:70%;transform:rotate(6deg)  translateY(3%); opacity:.9; z-index:1;}
+    .hero-bottles:hover .hero-bottle:nth-child(1){transform:rotate(-6deg) translateY(0%);}
+    .hero-bottles:hover .hero-bottle:nth-child(2){transform:rotate(-3deg) translateY(-2%);}
+    .hero-bottles:hover .hero-bottle:nth-child(3){transform:rotate(0deg)  translateY(-4%);}
+    .hero-bottles:hover .hero-bottle:nth-child(4){transform:rotate(3deg)  translateY(-2%);}
+    .hero-bottles:hover .hero-bottle:nth-child(5){transform:rotate(6deg)  translateY(0%);}
     .hero-badge{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(191,155,48,.3);padding:6px 16px;border-radius:20px;margin-bottom:28px;font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);width:fit-content;}
     .hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.6rem,4.5vw,4.8rem);font-weight:300;line-height:1.06;margin-bottom:24px;}
     .hero-title em{font-style:italic;color:var(--gold);}
@@ -332,11 +332,10 @@
   <!-- RIGHT: Bottles -->
   <div class="hero-right">
     <div class="hero-bottles">
-      <div class="hero-glow"></div>
-      <img class="hero-bottle" src="assets/images/BOTELLA SENDA DEL ORO.jpg"  alt="Senda del Oro"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA TORRALVO.jpg"       alt="Torralvo"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA CELIA.jpg"          alt="Celia Vizcarra"/>
-      <img class="hero-bottle" src="assets/images/BOTELLA MERLOT.png"         alt="Vizcarra Merlot"/>
+      <img class="hero-bottle" src="assets/images/BOTELLA SENDA DEL ORO.jpg"     alt="Senda del Oro"/>
+      <img class="hero-bottle" src="assets/images/BOTELLA TORRALVO.jpg"          alt="Torralvo"/>
+      <img class="hero-bottle" src="assets/images/BOTELLA CELIA.jpg"             alt="Celia Vizcarra"/>
+      <img class="hero-bottle" src="assets/images/BOTELLA MERLOT.png"            alt="Vizcarra Merlot"/>
       <img class="hero-bottle" src="assets/images/BOTELLA VIZCARRA 15 MESES.jpg" alt="Vizcarra 15 Meses"/>
     </div>
   </div>
